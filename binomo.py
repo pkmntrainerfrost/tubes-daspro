@@ -5,6 +5,9 @@
 
 # ALGORITMA FUNGSI
 
+from operator import index
+
+
 def is_integer(x):
 
     try:
@@ -205,4 +208,17 @@ def parse(file):
     # KEMBALIKAN LIST OF LIST OF STR data
     return data
 
-print(sort([5,2,31,24,4,1,23,12412]))
+def column(data,header):
+
+    column = []
+
+    colnum = element_index(data[0],header)
+
+    for i in range(1,length(data)):
+        column += [data[i][colnum]]
+
+    return column
+
+game = parse("game.csv")
+nama = column(game,"nama")
+print(nama)
