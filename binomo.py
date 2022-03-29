@@ -114,6 +114,12 @@ def remove_all_of_element(list,element):
 
     return new_list
 
+def element_index(list,element):
+
+    for i in range(length(list)):
+        if list[i] == element:
+            return i
+
 def sort(list,scheme="+"):
 
     old_list = list
@@ -128,7 +134,7 @@ def sort(list,scheme="+"):
             old_list = remove_element(old_list,maximum(old_list))
 
     return new_list
-        
+
 # ALGORITMA PARSER
 
 def parse(file):
