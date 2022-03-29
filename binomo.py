@@ -3,11 +3,138 @@
 
 # KAMUS
 
+# ALGORITMA FUNGSI
+
+def length(list):
+
+    # KAMUS LOKAL
+    # list          : list                  - list
+    # length        : int                   - panjang list/str
+    # i             : int                   - index
+
+    # ALGORITMA
+
+    # INISIALISASI INTEGER length
+    length = 0
+
+    # HITUNG PANJANG list
+    for i in list:
+        length += 1
+    
+    # KEMBALIKAN INTEGER length
+    return length
+
+def is_integer(x):
+
+    try:
+        y = int(x)
+    except:
+        return False
+    else:
+        return True
+
+def remove_delimiter(x):
+
+    y = ""
+
+    for i in x:
+        if i != "." and i != ",":
+            y += i
+
+    return y
+
+def maximum(list):
+
+    max = list[0]
+
+    for i in list:
+        if i > max:
+            max = i
+
+    return max
+
+def minimum(list):
+
+    min = list[0]
+
+    for i in list:
+        if i < min:
+            min = i
+
+    return min
+
+def head(list):
+
+    return list[0]
+
+def tail(list):
+
+    return list[1:]
+
+def init(list):
+
+    return list[:(length(list)-1)]
+
+def last(list):
+
+    return list[-1:]
+
+def remove_index(list,index):
+
+    new_list = []
+
+    for i in range(length(list)):
+        if i != index:
+            new_list += [list[i]]
+
+    return new_list
+
+def remove_element(list,element):
+
+    new_list = []
+    old_list = list
+
+    for i in range(length(list)):
+        if list[i] != element:
+            new_list += [list[i]]
+            old_list = tail(old_list)
+        else:
+            new_list += tail(old_list)
+            break
+
+    return new_list
+
+def remove_all_of_element(list,element):
+
+    new_list = []
+
+    for i in range(length(list)):
+        if list[i] != element:
+            new_list += [list[i]]
+
+    return new_list
+
+def sort(list,scheme="+"):
+
+    old_list = list
+    new_list = []
+
+    while length(new_list) != length(list):
+        if scheme == "+":
+            new_list += [minimum(old_list)]
+            old_list = remove_element(old_list,minimum(old_list))
+        else:
+            new_list += [maximum(old_list)]
+            old_list = remove_element(old_list,maximum(old_list))
+
+    return new_list
+        
 # ALGORITMA PARSER
 
 def parse(file):
 
     # KAMUS LOKAL
+    # file          : str                   - nama + path file yang hendak di-parse
     # f             : file                  - file yang di-parse
     # raw_data      : str                   - data mentah file
     # cols, row     : int                   - jumlah kolom dan baris
@@ -51,47 +178,3 @@ def parse(file):
 
     # KEMBALIKAN LIST OF LIST OF STR data
     return data
-
-def add_game():
-
-    global game
-
-    nama = str(input("Masukkan nama game: "))
-    kategori = str(input("Masukkan kategori: "))
-    tahun_rilis = str(input("Masukkan tahun rilis: "))
-    harga = str(input("Masukkan harga: "))
-    stok_awal = str(input("Masukkan stok awal: "))
-
-    nama_valid = nama != ""
-    kategori_valid = kategori != ""
-
-    try:
-        shirakami_fubuki = tahun_rilis + harga + stok_awal + 1
-    except:
-        numerics_valid = False
-    else:
-        numerics_valid = True
-
-    valid = nama_valid and kategori_valid and numerics_valid
-
-    if valid:
-        
-        id = ""
-
-        for i in game:
-            id = i[0]
-        
-        id = int(id[-3:]) + 1
-
-        if id < 100:
-            id = "0" + str(id)
-
-        game += [["GAME"+id,nama,kategori,tahun_rilis,harga,stok_awal]]
-    
-    else:
-
-        print("eror")
-
-game = parse("game.csv")
-add_game()
-print(game)
