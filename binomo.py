@@ -5,25 +5,6 @@
 
 # ALGORITMA FUNGSI
 
-def length(list):
-
-    # KAMUS LOKAL
-    # list          : list                  - list
-    # length        : int                   - panjang list/str
-    # i             : int                   - index
-
-    # ALGORITMA
-
-    # INISIALISASI INTEGER length
-    length = 0
-
-    # HITUNG PANJANG list
-    for i in list:
-        length += 1
-    
-    # KEMBALIKAN INTEGER length
-    return length
-
 def is_integer(x):
 
     try:
@@ -42,6 +23,8 @@ def remove_delimiter(x):
             y += i
 
     return y
+
+# ALGORITMA FUNGSI-FUNGSI YANG BERHUBUNGAN DENGAN LIST
 
 def maximum(list):
 
@@ -63,21 +46,24 @@ def minimum(list):
 
     return min
 
-def head(list):
+def length(list):
 
-    return list[0]
+    # KAMUS LOKAL
+    # list          : list                  - list
+    # length        : int                   - panjang list/str
+    # i             : int                   - index
 
-def tail(list):
+    # ALGORITMA
 
-    return list[1:]
+    # INISIALISASI INTEGER length
+    length = 0
 
-def init(list):
-
-    return list[:(length(list)-1)]
-
-def last(list):
-
-    return list[-1:]
+    # HITUNG PANJANG list
+    for i in list:
+        length += 1
+    
+    # KEMBALIKAN INTEGER length
+    return length
 
 def remove_index(list,index):
 
@@ -92,15 +78,11 @@ def remove_index(list,index):
 def remove_element(list,element):
 
     new_list = []
-    old_list = list
 
-    for i in range(length(list)):
-        if list[i] != element:
-            new_list += [list[i]]
-            old_list = tail(old_list)
-        else:
-            new_list += tail(old_list)
-            break
+    index = element_index(list,element)
+
+    new_list += get_element(list,0,index)
+    new_list += get_element(list,index+1)
 
     return new_list
 
@@ -119,6 +101,44 @@ def element_index(list,element):
     for i in range(length(list)):
         if list[i] == element:
             return i
+
+def get_element(list,first,last=-1):
+
+    if last == -1:
+        last = length(list)
+
+    new_list = []
+
+    for i in range(first,last):
+        new_list += [list[i]]
+    
+    return new_list
+
+def insert_element(list,index,element):
+
+    new_list = []
+
+    new_list += get_element(list,0,index)
+    new_list += element
+    new_list += get_element(list,index)
+
+    return new_list
+
+def head(list):
+
+    return list[0]
+
+def tail(list):
+
+    return get_element(list,1)
+
+def init(list):
+
+    return get_element(0,length(list)-1)
+
+def last(list):
+
+    return list[length(list)-1]
 
 def sort(list,scheme="+"):
 
@@ -184,3 +204,5 @@ def parse(file):
 
     # KEMBALIKAN LIST OF LIST OF STR data
     return data
+
+print(sort([5,2,31,24,4,1,23,12412]))
