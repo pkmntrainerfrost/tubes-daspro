@@ -5,10 +5,6 @@
 
 # ALGORITMA FUNGSI
 
-from operator import index
-from turtle import right
-
-
 def is_integer(x):
 
     try:
@@ -100,6 +96,16 @@ def remove_all_of_element(list,element):
 
     return new_list
 
+def element_count(list,element):
+
+    count = 0
+
+    for i in list:
+        if i == element:
+            count += 1
+    
+    return count
+
 def element_index(list,element):
 
     for i in range(length(list)):
@@ -107,6 +113,8 @@ def element_index(list,element):
             return i
 
 def get_element(list,first,last=-1):
+
+    # cari nama lebih bagus plox
 
     if last == -1:
         last = length(list)
@@ -118,7 +126,7 @@ def get_element(list,first,last=-1):
     
     return new_list
 
-def insert_element(list,index,element):
+def element_insert(list,index,element):
 
     new_list = []
 
@@ -227,5 +235,3 @@ def column(data,header):
         column += [data[i][colnum]]
 
     return column
-
-print(sort([5,1,23,5,1,4,3,14,21,42142,1412,3,212,3,51,2,3]))
