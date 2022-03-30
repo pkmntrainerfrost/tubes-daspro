@@ -7,7 +7,7 @@
 # TODO:
 # TULIS PROGRAM UTAMA
 # TULIS KAMUS UTAMA
-# TULISKAN KOMEN
+# TULIS KOMEN
 # RAPIHKAN KODE, JADIKAN KONSISTEN
 
 # Program BNMO
@@ -211,8 +211,8 @@ def sort(list,scheme="+"):
     # list          : list of int/float     - list yang akan diurutkan elemennya
     # scheme        : char ("+"/"-")        - skema pengurutan; "+" ascending, "-" descending
     # pivot         : int/float             - elemen yang dijadikan pivot
-    # l             : list of int/float     - list yang berisi elemen-elemen < atau <= pivot
-    # r             : list of int/float     - list yang berisi elemen-elemen > atau >= pivot
+    # l             : list of int/float     - list yang berisi elemen-elemen < (+) atau > (-) pivot
+    # r             : list of int/float     - list yang berisi elemen-elemen >= (+) atau <= (-) pivot
     # i             : int/float             - elemen tertentu pada list
 
     # ALGORITMA FUNGSI
