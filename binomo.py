@@ -4,6 +4,12 @@
 # NIM - Nama Anggota Kelompok:
 # 16521213 - Salman Ma'arif Achsien
 
+# TODO:
+# TULIS PROGRAM UTAMA
+# TULIS KAMUS UTAMA
+# TULISKAN KOMEN
+# RAPIHKAN KODE, JADIKAN KONSISTEN
+
 # Program BNMO
 # 
 
@@ -156,9 +162,19 @@ def is_length(list,length):
     else:
         return False
 
-def is_ordered(list,length,scheme=""):
+def is_ordered(list,scheme=""):
 
-    return
+    asc = sort(list,"+")
+    dsc = sort(list,"-")
+
+    if scheme == "+":
+        ordered = list == asc
+    elif scheme == "-":
+        ordered = list == dsc
+    else:
+        ordered = list == asc or list == dsc
+    
+    return ordered
 
 # ALGORITMA FUNGSI-FUNGSI LIST - LAINNYA
 
@@ -188,7 +204,7 @@ def length(list):
 def sort(list,scheme="+"):
 
     # Mengurutkan elemen-elemen pada list of int/float menggunakan algoritma quicksort - pengganti sort()
-    # I.S.: list merupakan sebuah list of int/float
+    # I.S.: list merupakan sebuah list of int/float, scheme sembarang (selain "+"/"-", akan ascending)
     # F.S.: sebuah list baru yang berisi elemen-elemen list, tetapi terurut berdasarkan skema scheme
 
     # KAMUS LOKAL
@@ -228,7 +244,7 @@ def sort(list,scheme="+"):
                     r += [i]
 
         # OUTPUT
-        return sort(l) + [pivot] + sort(r)
+        return sort(l,scheme) + [pivot] + sort(r,scheme)
 
 # ALGORITMA FUNGSI-FUNGSI VALIDASI
 
