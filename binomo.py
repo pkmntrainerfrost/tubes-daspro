@@ -6,6 +6,7 @@
 # ALGORITMA FUNGSI
 
 from operator import index
+from turtle import right
 
 
 def is_integer(x):
@@ -137,7 +138,7 @@ def tail(list):
 
 def init(list):
 
-    return get_element(0,length(list)-1)
+    return get_element(list,0,length(list)-1)
 
 def last(list):
 
@@ -145,18 +146,26 @@ def last(list):
 
 def sort(list,scheme="+"):
 
-    old_list = list
-    new_list = []
+    if length(list) <= 1:
+        return list
+    else:
+        pivot = last(list)
+        l = []
+        r = []
 
-    while length(new_list) != length(list):
-        if scheme == "+":
-            new_list += [minimum(old_list)]
-            old_list = remove_element(old_list,minimum(old_list))
-        else:
-            new_list += [maximum(old_list)]
-            old_list = remove_element(old_list,maximum(old_list))
+        for i in init(list):
+            if scheme == "+":
+                if i < pivot:
+                    l += [i]
+                else:
+                    r += [i]
+            else:
+                if i > pivot:
+                    l += [i]
+                else:
+                    r += [i]
 
-    return new_list
+        return sort(l) + [pivot] + sort(r)
 
 # ALGORITMA PARSER
 
@@ -219,6 +228,4 @@ def column(data,header):
 
     return column
 
-game = parse("game.csv")
-nama = column(game,"nama")
-print(nama)
+print(sort([5,1,23,5,1,4,3,14,21,42142,1412,3,212,3,51,2,3]))
