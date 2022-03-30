@@ -358,8 +358,8 @@ def lowercase(order):
 
 def cipher(text,key,mode):
 
-    # cipher v 0.1
-    # modified vigenere cipher; saya namakan frost cipher karena ya saya sedikit narsis
+    # cipher v 0.1 aka frost's cipher
+    # modified vigenere cipher; saya namakan frost's cipher karena ya saya sedikit narsis
     # untuk huruf mengikuti vigenere cipher biasa
     # untuk angka, k = a mod 10 dimana a adalah urutan k dalam alfabet [a=0,b=1,...]
     #              o = (t + k) mod 10
