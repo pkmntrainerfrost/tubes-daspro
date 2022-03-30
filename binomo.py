@@ -19,10 +19,22 @@
 
 def konso(element,list):
 
+    # Menghasilkan sebuah list dari element dan list, dengan element sebagai elemen pertama
+    # I.S.: element dan elemen-elemen pada list bertipe data sama
+    # F.S.: sebuah list dari element dan list, dengan element sebagai elemen pertama
+
+    # OUTPUT
     return [element] + list
+
+    # a homage to my beloved haskell-chan -a
 
 def konsdot(list,element):
 
+    # Menghasilkan sebuah list dari element dan list, dengan element sebagai elemen pertama
+    # I.S.: element dan elemen-elemen pada list bertipe data sama
+    # F.S.: sebuah list dari element dan list, dengan element sebagai elemen pertama
+
+    # OUTPUT
     return list + [element]
 
 def konkat(*lists):
@@ -176,6 +188,14 @@ def is_ordered(list,scheme=""):
     
     return ordered
 
+def is_member(list,element):
+
+    for i in list:
+        if i == element:
+            return True
+    
+    return False
+
 # ALGORITMA FUNGSI-FUNGSI LIST - LAINNYA
 
 def length(list):
@@ -248,15 +268,6 @@ def sort(list,scheme="+"):
 
 # ALGORITMA FUNGSI-FUNGSI VALIDASI
 
-def is_integer(object):
-
-    try:
-        object = int(object)
-    except:
-        return False
-    else:
-        return True
-
 def is_list(object):
 
     try:
@@ -266,3 +277,48 @@ def is_list(object):
     else:
         return True
 
+def is_integer(object):
+
+    try:
+        object = int(object)
+    except:
+        return False
+    else:
+        return True
+
+def is_uppercase(object):
+
+    uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+
+    if length(object) == 1:
+        return is_member(uppercase,object)
+    else:
+        for i in object:
+            if not is_member(uppercase,object):
+                return False
+        return True
+
+def is_lowercase(object):
+
+    lowercase = "abcdefghijklmnopqrstuvwxyz"
+
+    for i in object:
+        if not is_member(lowercase,i):
+            return False
+    return True
+
+def is_alphabetical(object):
+
+    for i in object:
+        if not is_uppercase(i) and not is_lowercase(i):
+            return False
+    return True
+
+def is_alphanumeric(object):
+
+    for i in object:
+        if not is_alphabetical(i) and not is_integer(i):
+            return False
+    return True
+
+# ALGORITMA FUNGSI-FUNGSI CIPHER
