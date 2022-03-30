@@ -1,124 +1,74 @@
+# Tugas Besar IF 1210 Dasar Pemrograman
+
+# Kelompok 06 / Kelas 07
+# NIM - Nama Anggota Kelompok:
+# 16521213 - Salman Ma'arif Achsien
+
 # Program BNMO
 # 
 
 # KAMUS
 
-# ALGORITMA FUNGSI
+# ALGORITMA FUNGSI-FUNGSI LIST - KONSTRUKTOR
 
-def is_integer(x):
+def konso(element,list):
 
-    try:
-        y = int(x)
-    except:
-        return False
-    else:
-        return True
+    return [element] + list
 
-def remove_delimiter(x):
+def konsdot(list,element):
 
-    y = ""
+    return list + [element]
 
-    for i in x:
-        if i != "." and i != ",":
-            y += i
+def konkat(*lists):
 
-    return y
+    new_list = []
 
-# ALGORITMA FUNGSI-FUNGSI YANG BERHUBUNGAN DENGAN LIST
+    for list in lists:
+        new_list += list
 
-def maximum(list):
+    return new_list
 
-    max = list[0]
+def insert(list,index,element):
 
-    for i in list:
-        if i > max:
-            max = i
+    return 
 
-    return max
+def remove(list,index):
 
-def minimum(list):
+    return segment(list,0,index) + segment(list,index+1,length(list))
 
-    min = list[0]
+def delete(list,element,instances=1):
 
-    for i in list:
-        if i < min:
-            min = i
+    new_list = []
+    deleted = 0
+    i = 0
 
-    return min
+    while (i < length(list)) and (deleted < instances):
+        if list[i] == element:
+            deleted += 1
+        else:
+            new_list += list[i]
+        i += 1
 
-def length(list):
+    return new_list
+
+# ALGORITMA FUNGSI-FUNGSI LIST - SELEKTOR
+
+def segment(list,first,last=-1):
+
+    # Mengembalikan list[first] s.d. list[last1] - pengganti slicing
+    # I.S.: 
+    # F.S.: List baru yang terdiri hanya atas semua elemen dari list[first] s.d. list[last1]
 
     # KAMUS LOKAL
-    # list          : list                  - list
-    # length        : int                   - panjang list/str
-    # i             : int                   - index
-
-    # ALGORITMA
-
-    # INISIALISASI INTEGER length
-    length = 0
-
-    # HITUNG PANJANG list
-    for i in list:
-        length += 1
+    # list          : list of any           - list yang akan di-segment
+    # first         : int                   - index awal
+    # last          : int                   - index akhir
     
-    # KEMBALIKAN INTEGER length
-    return length
-
-def remove_index(list,index):
-
-    new_list = []
-
-    for i in range(length(list)):
-        if i != index:
-            new_list += [list[i]]
-
-    return new_list
-
-def remove_element(list,element):
-
-    new_list = []
-
-    index = element_index(list,element)
-
-    new_list += get_element(list,0,index)
-    new_list += get_element(list,index+1)
-
-    return new_list
-
-def remove_all_of_element(list,element):
-
-    new_list = []
-
-    for i in range(length(list)):
-        if list[i] != element:
-            new_list += [list[i]]
-
-    return new_list
-
-def element_count(list,element):
-
-    count = 0
-
-    for i in list:
-        if i == element:
-            count += 1
-    
-    return count
-
-def element_index(list,element):
-
-    for i in range(length(list)):
-        if list[i] == element:
-            return i
-
-def get_element(list,first,last=-1):
-
-    # cari nama lebih bagus plox
+    # ALGORITMA FUNGSI
 
     if last == -1:
         last = length(list)
-
+    
     new_list = []
 
     for i in range(first,last):
@@ -126,112 +76,177 @@ def get_element(list,first,last=-1):
     
     return new_list
 
-def element_insert(list,index,element):
+def maximum(list):
 
-    new_list = []
+    # Mengembalikan elemen terbesar pada suatu list - pengganti fungsi max()
+    # I.S.: List merupakan sebuah list yang tidak kosong dan elemennya bertipe int/float
+    # F.S.: Elemen terbesar pada list
 
-    new_list += get_element(list,0,index)
-    new_list += element
-    new_list += get_element(list,index)
+    # KAMUS LOKAL
+    # list          : list of int/float     - list yang akan dicari elemen terbesarnya
+    # max           : int/float             - elemen terbesar pada list
+    # i             : int/float             - elemen tertentu pada list
 
-    return new_list
+    # ALGORITMA FUNGSI
+    
+    # INISIALISASI INTEGER max
+    max = list[0]
+
+    # CEK SEMUA ELEMEN PADA list, GANTI MAX DENGAN i BILA i > max
+    for i in list:
+        if i > max:
+            max = i
+
+    # OUTPUT
+    return max
+
+def minimum(list):
+
+    # Mengembalikan elemen terkecil pada suatu list - pengganti fungsi min()
+    # I.S.: List merupakan sebuah list yang tidak kosong dan elemennya bertipe int/float
+    # F.S.: Elemen terkecil pada list
+
+    # KAMUS LOKAL
+    # list          : list of int/float     - list yang akan dicari elemen terkecilnya
+    # min           : int/float             - elemen terkecil pada list
+    # i             : int/float             - elemen tertentu pada list
+
+    # ALGORITMA FUNGSI
+    
+    # INISIALISASI INTEGER min
+    min = list[0]
+
+    # CEK SEMUA ELEMEN PADA list, GANTI min DENGAN i BILA i < min
+    for i in list:
+        if i < min:
+            min = i
+
+    # OUTPUT
+    return min
 
 def head(list):
 
     return list[0]
 
 def tail(list):
-
-    return get_element(list,1)
+    
+    return segment(list,1)
 
 def init(list):
 
-    return get_element(list,0,length(list)-1)
+    return segment(list,0,length(list)-1)
 
 def last(list):
+    
+    return list[length(list)-1] 
 
-    return list[length(list)-1]
+# ALGORITMA FUNGSI-FUNGSI LIST - PREDIKAT
+
+def is_empty(list):
+
+    if list == []:
+        return True
+    else:
+        return False
+
+def is_length(list,length):
+    
+    if length(list) == length:
+        return True
+    else:
+        return False
+
+def is_ordered(list,length,scheme=""):
+
+    return
+
+# ALGORITMA FUNGSI-FUNGSI LIST - LAINNYA
+
+def length(list):
+
+    # Mengembalikan panjang dari list - pengganti fungsi len()
+    # I.S.: 
+    # F.S.: Panjang dari list
+
+    # KAMUS LOKAL
+    # list          : list of any           - list yang akan dihitung panjangnya
+    # length        : int                   - panjang list
+    # i             : any                   - elemen tertentu pada list
+
+    # ALGORITMA FUNGSI
+    
+    # INISIALISASI INTEGER length
+    length = 0
+
+    # HITUNG PANJANG list
+    for i in list:
+        length += 1
+    
+    # OUTPUT
+    return length
 
 def sort(list,scheme="+"):
 
+    # Mengurutkan elemen-elemen pada list of int/float menggunakan algoritma quicksort - pengganti sort()
+    # I.S.: list merupakan sebuah list of int/float
+    # F.S.: sebuah list baru yang berisi elemen-elemen list, tetapi terurut berdasarkan skema scheme
+
+    # KAMUS LOKAL
+    # list          : list of int/float     - list yang akan diurutkan elemennya
+    # scheme        : char ("+"/"-")        - skema pengurutan; "+" ascending, "-" descending
+    # pivot         : int/float             - elemen yang dijadikan pivot
+    # l             : list of int/float     - list yang berisi elemen-elemen < atau <= pivot
+    # r             : list of int/float     - list yang berisi elemen-elemen > atau >= pivot
+    # i             : int/float             - elemen tertentu pada list
+
+    # ALGORITMA FUNGSI
+
+    # CEK PANJANG list, KEMBALIKAN list BILA <= 1
     if length(list) <= 1:
+
         return list
+
+    # PANJANG list > 1
     else:
+        
+        # INISIALISASI LIST pivot, l, DAN r
         pivot = last(list)
         l = []
         r = []
 
+        # MASUKKAN SETIAP ELEMEN SELAIN pivot KE DALAM l ATAU r BERDASARKAN SKEMA
         for i in init(list):
-            if scheme == "+":
-                if i < pivot:
-                    l += [i]
-                else:
-                    r += [i]
-            else:
+            if scheme == "-":
                 if i > pivot:
                     l += [i]
                 else:
                     r += [i]
+            else:
+                if i < pivot:
+                    l += [i]
+                else:
+                    r += [i]
 
+        # OUTPUT
         return sort(l) + [pivot] + sort(r)
 
-# ALGORITMA PARSER
+# ALGORITMA FUNGSI-FUNGSI VALIDASI
 
-def parse(file):
+def is_integer(object):
 
-    # KAMUS LOKAL
-    # file          : str                   - nama + path file yang hendak di-parse
-    # f             : file                  - file yang di-parse
-    # raw_data      : str                   - data mentah file
-    # cols, row     : int                   - jumlah kolom dan baris
-    # col, row, j   : int                   - index
-    # i             : char/int              - index
-    # data          : list of lists of str  - data hasil parsing
+    try:
+        object = int(object)
+    except:
+        return False
+    else:
+        return True
 
-    # ALGORITMA
+def is_list(object):
 
-    # BUKA FILE, SIMPAN DI STRING raw_data
-    f = open(file,"r")
-    raw_data = f.read()
-    f.close()
+    try:
+        length = length(object)
+    except:
+        return False
+    else:
+        return True
 
-    # MENGHITUNG JUMLAH BARIS DAN KOLOM
-    cols = 1
-    rows = 1
-
-    for i in raw_data:
-        if i == ";":
-            cols += 1
-        if i == "\n":
-            rows += 1
-            cols = 1
-    
-    # INISIALISASI LIST OF LIST OF STR data 
-    data = [["" for j in range(cols)] for i in range(rows)]
-
-    # SIMPAN DATA DI LIST OF LIST OF STR data
-    col = 0
-    row = 0
-
-    for i in raw_data:
-        if (i != ";") and (i != "\n"):
-            data[row][col] += i
-        elif (i == ";"):
-            col += 1
-        else:
-            row += 1
-            col = 0 
-
-    # KEMBALIKAN LIST OF LIST OF STR data
-    return data
-
-def column(data,header):
-
-    column = []
-
-    colnum = element_index(data[0],header)
-
-    for i in range(1,length(data)):
-        column += [data[i][colnum]]
-
-    return column
