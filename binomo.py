@@ -22,11 +22,11 @@ def konso(element,list):
     # Menghasilkan sebuah list dari element dan list, dengan element sebagai elemen pertama
     # I.S.: element dan elemen-elemen pada list bertipe data sama
     # F.S.: sebuah list dari element dan list, dengan element sebagai elemen pertama
+    # a homage to my beloved haskell-chan -a
 
     # OUTPUT
     return [element] + list
-
-    # a homage to my beloved haskell-chan -a
+    
 
 def konsdot(list,element):
 
