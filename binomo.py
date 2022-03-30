@@ -47,7 +47,7 @@ def konkat(*lists):
 
 def insert(list,index,element):
 
-    return 
+    return segment(list,0,index) + [element] + segment(list,index+1) 
 
 def remove(list,index):
 
@@ -407,4 +407,3 @@ def cipher(text,key,mode):
     
     return result
 
-print(cipher("ceres fauna","Anuaf","encrypt"))
