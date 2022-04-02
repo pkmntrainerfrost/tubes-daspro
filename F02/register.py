@@ -1,7 +1,9 @@
-# csv path files
+# import functions module
 from components.functions_register import edit_files
 from components.functions_register import parse
-# FUNCTIONS
+from components.old import length
+
+# csv path files
 files = r'components\acc_data.csv'
 
 # Register function
@@ -20,12 +22,14 @@ def register():
         else:
             valid_username = False
             break
+
     # HASIL PENGECEKAN USERNAME
     if valid_username:   
         data = parse(files)
         existing_account = False
+
         # MEMVALIDASI PEMAKAIAN USERNAME
-        for i in range(len(data)):
+        for i in range(length(data)):
             if username == data[i][1]:
                 existing_account = True
                 
