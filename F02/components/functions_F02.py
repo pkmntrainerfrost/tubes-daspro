@@ -1,11 +1,20 @@
 # MENGECEK KONDISI CSV
+# I.S. Menerima file CSV
+# F.S. Menghasilkan True jika CSV tidak kosong dan sebaliknya
+# KAMUS
+# len : int { pengidentifikasi }
+# i, j :  int { variabel increment }
+# raw_data : file { file csv }
 def csv_checker(file):
     raw_data = open(file, 'r')
     len = 0
     for i in raw_data:
         for j in i:
             len += 1
-    return len
+    if len > 0:
+        return True
+    else: 
+        return False
     
 # MENKONVERSI CSV ke LIST OF LIST OF STR data
 def parse(file):
@@ -33,7 +42,6 @@ def parse(file):
     for i in raw_data:
         for j in i:
             if (j == ';'):
-                # print(str)
                 data[row][col] = str
                 str = ''
                 col += 1
@@ -48,7 +56,13 @@ def parse(file):
     return data
 
 # MENGEDIT FILE CSV
-def edit_files(name, username, password, files):    
+# I.S. Menerima input id, name , username, password, role, saldo , files
+# F.S. Menambah informasi id, name , username, password, role, saldo pada file csv tujuan
+# KAMUS
+# user_id : int { mengidentifikasi ID User }
+# editable_files : file { file csv }
+def edit_files(id, name, username, password, role, saldo , files):
+    user_id = id   
     editable_files = open(files, 'a')
-    editable_files.write(name + ';' + username + ';' + password + ';' + '\n')
+    editable_files.write(str(user_id)  + ';' + name + ';' + username + ';' + password + ';' + role + ';' + str(saldo) + '\n')
     editable_files.close()
