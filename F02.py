@@ -1,13 +1,12 @@
 # import functions module
-from components.functions_F02 import edit_files
-from components.functions_F02 import parse
-from components.functions_F02 import csv_checker
-from components.old import length
+from components.csv import *
+from components.binomo import length
 
 # csv path files
-files = r'components\user.csv'
 
+def register(files, kepemilikan_user_files):
 # Register function
+# Akses : Admin & User
 # I.S. Menerima input Nama, Username , Password kemudian divalidasi
 # F.S. Username berhasil terdaftar atau gagal daftar jika sudah username tidak unik / sudah ada
 # KAMUS
@@ -15,7 +14,8 @@ files = r'components\user.csv'
 # valid_username, existing_account : bool
 # orde, id : int
 # data : array of array of str
-def register():
+
+#ALGORITMA
     # INPUT DATA
     name = input("Nama : ")
     username = input("Username : ")
@@ -39,7 +39,7 @@ def register():
 
         # MEMVALIDASI PEMAKAIAN USERNAME
         for i in range(length(data)):
-            if username == data[i][1]:
+            if username == data[i][2]:
                 existing_account = True
                 
         # HASIL VALIDASI USERNAME
@@ -50,14 +50,14 @@ def register():
             if csv_checker(files):
                 # pemberian id pada user
                 id = int(data[length(data)-1][0]) + 1
-                # id baru akan diberikan saldo 0  dan role 'user'
-                edit_files (id , name , username, password, 'user' , 0 , files)
+                # id baru akan diberikan saldo 0 dan role 'user'
+                edit_files (str(id) , name , username, password, 'user' , str(0) , files)
             else:
-                edit_files (1 , name , username, password, 'user', 0 ,files)
+                edit_files (str(1) , name , username, password, 'user', str(0) ,files)
 
     else:
         print("Username hanya dapat mengandung alfabet A-Za-z, underscore “_”, strip “-”, dan angka 0-9.")
 
 # Run
-register()
+register(r'components\user.csv', r'components\kepemilikan.csv')
 
