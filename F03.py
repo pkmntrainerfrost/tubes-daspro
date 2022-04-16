@@ -16,10 +16,7 @@ from components.binomo import length
 # ALGORITMA
 # user data csv path
 files = r'components\user.csv'
-# ADMIN ACCESS KEY
-admin_username = "localhost"
-admin_id = 8888
-admin_password = "port8888"
+
 # ADMINISTRATOR FUNCTION
 admin = ["function that only admin can run."]
 # USER FUNCTION
@@ -34,6 +31,11 @@ def login(files):
     # DATA CSV
     data = parse(files)
     error = "Password atau username salah atau tidak ditemukan."
+    # ADMIN ACCESS KEY
+    user_id = 0
+    admin_username = "localhost"
+    admin_id = 8888
+    admin_password = "port8888"
     # INPUT LOGIN
     username = input("Masukkan username: ")
     password = input("Masukkan password: ")

@@ -1,11 +1,11 @@
 # import functions modules
-from components.csv import parse, edit_files, csv_checker,  clear_csv
+from components.csv import parse, csv_checker
 from components.binomo import length
 
 def ubah_game(files): # files = game.csv
     # Ubah Game Function
     # I.S. Menerima input ID Game yang ingin diubah
-    # F.S. Mengganti informasi dari ID Game yang dipilih
+    # F.S. Mengganti informasi dari ID Game yang dipilih dan mengembalikan seluruh data
     # Prekondisi : stock tidak bisa diubah
     # KAMUS
     # id, nama_game, kategori : string { input informasi data baru }
@@ -46,17 +46,19 @@ def ubah_game(files): # files = game.csv
             if found == False:
                 print("ID Game tersebut tidak ditemukan.")
             else:
+                return data
+                
                 # JIKA SAVE
                 # PROGRAM SEMENTARA KARENA SAVE TERDAPAT PADA F16
-                ans = input("Save? (y/n): ")
-                if ans == "y":
-                    # MENGOSONGI CSV
-                    clear_csv(files)
-                    # MENGISI ULANG DENGAN DATA YANG TELAH DIGANTI
-                    for i in range(len(data)):
-                        edit_files(data[i][0], data[i][1], data[i][2], data[i][3], data[i][4], data[i][5], files)
+                # ans = input("Save? (y/n): ")
+                # if ans == "y":
+                #     # MENGOSONGI CSV
+                #     clear_csv(files)
+                #     # MENGISI ULANG DENGAN DATA YANG TELAH DIGANTI
+                #     for i in range(len(data)):
+                #         edit_files(data[i][0], data[i][1], data[i][2], data[i][3], data[i][4], data[i][5], files)
         else:
-                print("Field ID tidak boleh kosong!")
+            print("Field ID tidak boleh kosong!")
             
     # JIKA CSV KOSONG / BELUM ADA GAME MAKA PESAN ERROR
     else:

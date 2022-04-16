@@ -30,7 +30,7 @@ def topup (files):
         print(f"Username \"{username}\" tidak ditemukan.")
     else:
         # JIKA USERNAME VALID, PERIKSA INPUT NOMINAL
-        if int(data[idx_username][5]) - nominal_topup < 0:
+        if int(data[idx_username][5]) + nominal_topup < 0:
             print("Masukkan tidak valid.")
         else:
             # JIKA INPUT NOMINAL VALID
@@ -42,12 +42,8 @@ def topup (files):
                     data[j][5] = str(saldo)
                     saldo_updated = data[j][5]
                     name = data[j][1]
-            # MENGOSONGI CSV
-            clear_csv(files)
-            # MENGISI ULANG CSV DENGAN FILE YANG SUDAH DIUPDATE
-            for i in range(length(data)):
-                edit_files(data[i][0], data[i][1], data[i][2], data[i][3], data[i][4], data[i][5], files)
             print(f"Top up berhasil. Saldo {name} bertambah menjadi {saldo_updated}.")
+            return data
                 
 # Run
 topup('components\\user.csv')

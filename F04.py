@@ -1,12 +1,12 @@
 # import functions module
-from components.csv import csv_checker, parse, edit_files
+from components.csv import csv_checker, parse
 from components.binomo import length, is_integer
 
-def tambah_game(files, kepemilikan_files): # files = game.csv , kepemilikan_files = memberikan nilai game id default
+def tambah_game(files): # files = game.csv
 # Tambah Game Function
 # Akses : Admin
 # I.S. Menerima input informasi game baru yang akan ditambahkan
-# F.S. Melakukan penambahan game pada BNMO (game.csv)
+# F.S. Melakukan penambahan game pada memory variabel dan mengembalikan semua data
 # KAMUS
 # not_valid : Bool { variabel kondisi untuk break while }
 # nama_game, kategori : string { data game }
@@ -14,6 +14,7 @@ def tambah_game(files, kepemilikan_files): # files = game.csv , kepemilikan_file
 # harga : real { data game }
 # id : integer { id data }
 # data : arr of arr of str { data game.csv }
+# memory_data : arr of arr of str { data temporary setelah perubahan }
 
 #ALGORITMA
     # PARSE CSV
@@ -41,7 +42,7 @@ def tambah_game(files, kepemilikan_files): # files = game.csv , kepemilikan_file
             id = length(data) + 1
             # id akan diincrement berdasarkan urutan game yang ada
             # MEMORY DATA UNTUK DISAVE
-            memory_data = ['GAME'+str(id), nama_game, kategori, tahun_rilis, harga, stok_awal]
+            memory_data = data + [['GAME'+str(id), nama_game, kategori, tahun_rilis, harga, stok_awal]]
             
             # JIKA SAVE
             # edit_files ('GAME' + str(id) , nama_game , kategori, tahun_rilis, harga , stok_awal , files)
@@ -51,7 +52,7 @@ def tambah_game(files, kepemilikan_files): # files = game.csv , kepemilikan_file
         else:
             # jika belum ada game , game yang ditambah pertama kali akan diberi id = 1
             # MEMORY DATA UNTUK DISAVE
-            memory_data = ['GAME'+str(1), nama_game, kategori, tahun_rilis, harga, stok_awal]
+            memory_data = [['GAME'+str(1), nama_game, kategori, tahun_rilis, harga, stok_awal]]
 
             # JIKA SAVE
             # edit_files ('GAME'+ str(1) , nama_game , kategori, tahun_rilis, harga, stok_awal ,files)
@@ -63,5 +64,5 @@ def tambah_game(files, kepemilikan_files): # files = game.csv , kepemilikan_file
         return memory_data
 
 # Run        
-tambah_game('components\game.csv', 'components\kepemilikan.csv')
+tambah_game('components\game.csv')
             
