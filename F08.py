@@ -13,6 +13,7 @@ path_riwayat = r'components\riwayat.csv'
 # After login process
 # FUNCTION BUY GAME
 def buy_game(game_files, user_files, kepemilikan_user_files, riwayat_files, id):
+    # Akses : user
     # KAMUS
     # kepemilikan, data_game, data_username : files { csv }
     # arr_id : array of array { tabel data untuk id dari data kepemilikan }
