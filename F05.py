@@ -23,6 +23,7 @@ def ubah_game(files): # files = game.csv
         kategori = input("Masukkan kategori: ")
         tahun_rilis = input("Masukkan tahun rilis: ")
         harga = input("Masukkan harga: ")
+        
         # DATA BARU
         data_baru = [id , nama_game , kategori, tahun_rilis, harga, ""] 
 

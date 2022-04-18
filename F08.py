@@ -44,9 +44,12 @@ def buy_game(game_files, user_files, kepemilikan_user_files, riwayat_files, id):
 
     # INPUT
     game_id = input("Masukkan ID Game: ")
+
+    # Variabel untuk validasi
     found = False
     found_game = False
     loop = True
+
     # PROSES MENCARI GAME ID
     for i in range(length(data_game)):
         # JIKA GAME ID DITEMUKAN
@@ -55,6 +58,7 @@ def buy_game(game_files, user_files, kepemilikan_user_files, riwayat_files, id):
             loop = False
             found_game = False
             found = False
+
             # MEMVALIDASI KONDISI SALDO DAN STOK
             if (int(data_game[i][4]) <=  int(data_username[index3][5])) and int(data_game[i][5]) > 0:
                 # MEMVALIDASI KEPEMILIKAN GAME
@@ -67,9 +71,11 @@ def buy_game(game_files, user_files, kepemilikan_user_files, riwayat_files, id):
                                     found = True
                                     print("Anda sudah memiliki Game tersebut!")
                                     break
+
                             # JIKA USER BELUM MEMILIKI GAME TERSEBUT
                             if found == False:
                                 kepemilikan[j][1] += [id]
+
                     # JIKA GAME ID BELUM ADA DI DALAM FILE KEPEMILIKAN
                     if found_game == False:
                         kepemilikan += [[game_id, [id]]]
@@ -84,6 +90,7 @@ def buy_game(game_files, user_files, kepemilikan_user_files, riwayat_files, id):
                     data_game[index][5] = str(stok - 1)
                     saldo = int(data_username[index3][5])
                     data_username[index3][5] = str(saldo - int(data_game[index][4]))
+                    
                     # MENYIMPAN DI MEMORY DATA
                     memory_data_riwayat = data_riwayat + [[game_id, data_game[index][1], data_game[index][4], id, str(datetime.now().year)]]
                     memory_data_game = data_game

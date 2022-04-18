@@ -32,15 +32,18 @@ def login(files):
     data = parse(files)
     error = "Password atau username salah atau tidak ditemukan."
     global success
+
     success = False
     # ADMIN ACCESS KEY
     user_id = 0
     admin_username = "localhost"
     admin_id = 8888
     admin_password = "port8888"
+    
     # INPUT LOGIN
     username = input("Masukkan username: ")
     password = input("Masukkan password: ")
+    
     # VALIDASI INPUT USERNAME DAN PASSWORD
     if not(space_checker(username)) or not(space_checker(password)):
         return(print("Username atau Password tidak boleh kosong."))
@@ -49,7 +52,8 @@ def login(files):
         global logged_in, admin_status
         logged_in = False
         admin_status = False
-        # VERIFY IF ITS ADMIN
+    
+        # VERIFY APAKAH ADMIN
         if username == admin_username and password == admin_password:
             admin_status = True
             success = True
@@ -57,7 +61,8 @@ def login(files):
             # Menyimpan user id
             user_id = admin_id
             print("---ADMINISTRATOR---")
-        # VERIFY IF ITS USER
+       
+        # VERIFY APAKAH USER
         else:
             for i in range(length(data)):
                 if data[i][2] == username and data[i][3] == password:
@@ -67,6 +72,7 @@ def login(files):
                     success = True
                     logged_in = True
                     break
+            
             if success == False:
                 print(error)
             else:

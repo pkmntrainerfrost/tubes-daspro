@@ -27,14 +27,17 @@ def tambah_game(files): # files = game.csv
         tahun_rilis = input("Masukkan tahun rilis: ")
         harga = input("Masukkan harga: ")
         stok_awal = input("Masukkan stok awal: ")
+
+        # MEMVALIDASI INPUT
         if (not(space_checker(nama_game)) or not(space_checker(kategori)) or not(space_checker(tahun_rilis)) or not(space_checker(harga)) or not(space_checker(stok_awal))):
             print("Mohon masukkan semua informasi mengenai game agar dapat disimpan BNMO.")
         else:
-            # Untuk harga, bisa input integer maupun input real
+            # MEMVALIDASI TAHUN RILIS DAN HARGA
             if (is_integer(tahun_rilis) and (is_integer(harga)) and is_integer(stok_awal)):
                 not_valid = False
             else:
                 print("Mohon mengecek input untuk tahun rilis, harga, atau stok awal.")
+
     # PROGRAM SETELAH INPUT BENAR
     if (not_valid == False):
         if csv_checker(files):
@@ -59,6 +62,7 @@ def tambah_game(files): # files = game.csv
             # f = open(kepemilikan_files, 'a')
             # f.write('GAME' + str(1) + ';' + '\n')
             # f.close()
+            
         print("Selamat! Berhasil menambahkan game", nama_game)
         # MENGEMBALIKAN MEMORY DATA
         return memory_data

@@ -25,7 +25,6 @@ def register(files):
     if not(space_checker(name)) or not(space_checker(password)):
         return print("Nama atau Password tidak boleh kosong")
     
-
     # PENGECEKAN KENUNIKAN USERNAME
     valid_username = False
     for word in username:
