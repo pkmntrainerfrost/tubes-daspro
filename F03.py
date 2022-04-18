@@ -31,6 +31,8 @@ def login(files):
     # DATA CSV
     data = parse(files)
     error = "Password atau username salah atau tidak ditemukan."
+    global success
+    success = False
     # ADMIN ACCESS KEY
     user_id = 0
     admin_username = "localhost"
@@ -39,34 +41,37 @@ def login(files):
     # INPUT LOGIN
     username = input("Masukkan username: ")
     password = input("Masukkan password: ")
-    # PENANDA VALIDASI LOGIN DAN STATUS ADMIN
-    global success, logged_in, admin_status
-    success = False
-    logged_in = False
-    admin_status = False
-    # VERIFY IF ITS ADMIN
-    if username == admin_username and password == admin_password:
-        admin_status = True
-        success = True
-        logged_in = True
-        # Menyimpan user id
-        user_id = admin_id
-        print("---ADMINISTRATOR---")
-    # VERIFY IF ITS USER
+    # VALIDASI INPUT USERNAME DAN PASSWORD
+    if not(space_checker(username)) or not(space_checker(password)):
+        return(print("Username atau Password tidak boleh kosong."))
     else:
-        for i in range(length(data)):
-            if data[i][2] == username and data[i][3] == password:
-                # Menyimpan user id
-                user_id = data[i][0]
-                greeting = f"Halo {data[i][1]}! Selamat datang di “Binomo”"
-                success = True
-                logged_in = True
-                break
-        if success == False:
-            print(error)
+        # PENANDA VALIDASI LOGIN DAN STATUS ADMIN
+        global logged_in, admin_status
+        logged_in = False
+        admin_status = False
+        # VERIFY IF ITS ADMIN
+        if username == admin_username and password == admin_password:
+            admin_status = True
+            success = True
+            logged_in = True
+            # Menyimpan user id
+            user_id = admin_id
+            print("---ADMINISTRATOR---")
+        # VERIFY IF ITS USER
         else:
-            print(greeting)
-    return user_id
+            for i in range(length(data)):
+                if data[i][2] == username and data[i][3] == password:
+                    # Menyimpan user id
+                    user_id = data[i][0]
+                    greeting = f"Halo {data[i][1]}! Selamat datang di “Binomo”"
+                    success = True
+                    logged_in = True
+                    break
+            if success == False:
+                print(error)
+            else:
+                print(greeting)
+        return user_id
 
 # PROGRAM SETELAH LOGIN
 def after_login():

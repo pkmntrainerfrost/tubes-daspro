@@ -1,5 +1,5 @@
 # import functions module
-from components.csv import csv_checker, parse
+from components.csv import *
 from components.binomo import length, is_integer
 
 def tambah_game(files): # files = game.csv
@@ -27,7 +27,7 @@ def tambah_game(files): # files = game.csv
         tahun_rilis = input("Masukkan tahun rilis: ")
         harga = input("Masukkan harga: ")
         stok_awal = input("Masukkan stok awal: ")
-        if (nama_game =="" or kategori =="" or tahun_rilis =="" or harga =="" or stok_awal ==""):
+        if (not(space_checker(nama_game)) or not(space_checker(kategori)) or not(space_checker(tahun_rilis)) or not(space_checker(harga)) or not(space_checker(stok_awal))):
             print("Mohon masukkan semua informasi mengenai game agar dapat disimpan BNMO.")
         else:
             # Untuk harga, bisa input integer maupun input real

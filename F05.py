@@ -25,10 +25,6 @@ def ubah_game(files): # files = game.csv
         harga = input("Masukkan harga: ")
         # DATA BARU
         data_baru = [id , nama_game , kategori, tahun_rilis, harga, ""] 
-        # if (tahun_rilis != "" and harga != ""):
-        #     if(not(is_integer(tahun_rilis) and (is_integer(harga) or is_float(harga)))):
-        #         print("Mohon mengecek input untuk tahun rilis atau harga.")
-        #         exit()
 
         # VALIDASI INPUT ID
         if (id != ""):

@@ -1,5 +1,5 @@
 # import function module
-from components.csv import parse, edit_files, clear_csv
+from components.csv import *
 from components.binomo import length
 
 # After login process
@@ -20,30 +20,35 @@ def topup (files):
     # INPUT
     username = input("Masukkan username: ")
     nominal_topup = int(input("Masukkan saldo: "))
-    # VALIDASI USERNAME DAN PASSWORD
-    found = False
-    for i in range(length(data)):
-        if data[i][2] == username:
-            idx_username = i
-            found = True
-    if found == False:
-        print(f"Username \"{username}\" tidak ditemukan.")
+
+    # VALIDASI INPUT USERNAME DAN NOMINAL TOP UP
+    if (not(space_checker(username)) or not(space_checker(str(nominal_topup)))):
+        return print("Username atau Saldo tidak boleh kosong.")
     else:
-        # JIKA USERNAME VALID, PERIKSA INPUT NOMINAL
-        if int(data[idx_username][5]) + nominal_topup < 0:
-            print("Masukkan tidak valid.")
+        # VALIDASI USERNAME DAN PASSWORD
+        found = False
+        for i in range(length(data)):
+            if data[i][2] == username:
+                idx_username = i
+                found = True
+        if found == False:
+            print(f"Username \"{username}\" tidak ditemukan.")
         else:
-            # JIKA INPUT NOMINAL VALID
-            for j in range(length(data)):
-                # MENCARI USERNAME YANG INGIN DITOP UP & UPDATE DATA
-                if data[j][2] == username:
-                    saldo = int(data[j][5])
-                    saldo += nominal_topup
-                    data[j][5] = str(saldo)
-                    saldo_updated = data[j][5]
-                    name = data[j][1]
-            print(f"Top up berhasil. Saldo {name} bertambah menjadi {saldo_updated}.")
-            return data
+            # JIKA USERNAME VALID, PERIKSA INPUT NOMINAL
+            if int(data[idx_username][5]) + nominal_topup < 0:
+                print("Masukkan tidak valid.")
+            else:
+                # JIKA INPUT NOMINAL VALID
+                for j in range(length(data)):
+                    # MENCARI USERNAME YANG INGIN DITOP UP & UPDATE DATA
+                    if data[j][2] == username:
+                        saldo = int(data[j][5])
+                        saldo += nominal_topup
+                        data[j][5] = str(saldo)
+                        saldo_updated = data[j][5]
+                        name = data[j][1]
+                print(f"Top up berhasil. Saldo {name} bertambah menjadi {saldo_updated}.")
+                return data
                 
 # Run
 topup('components\\user.csv')

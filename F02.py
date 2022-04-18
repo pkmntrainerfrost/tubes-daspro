@@ -4,7 +4,7 @@ from components.binomo import length
 
 # csv path files
 
-def register(files, kepemilikan_user_files):
+def register(files):
 # Register function
 # Akses : Admin & User
 # I.S. Menerima input Nama, Username , Password kemudian divalidasi
@@ -20,6 +20,11 @@ def register(files, kepemilikan_user_files):
     name = input("Nama : ")
     username = input("Username : ")
     password = input("Password : ")
+
+    # PENGECEKAN INPUT NAMA DAN PASSWORD
+    if not(space_checker(name)) or not(space_checker(password)):
+        return print("Nama atau Password tidak boleh kosong")
+    
 
     # PENGECEKAN KENUNIKAN USERNAME
     valid_username = False
@@ -44,9 +49,8 @@ def register(files, kepemilikan_user_files):
                 
         # HASIL VALIDASI USERNAME
         if existing_account:
-            print(f"Username {username} sudah terpakai, silahkan menggunakan username lain.")
+            return print(f"Username {username} sudah terpakai, silahkan menggunakan username lain.")
         else:
-            print(f'Username {username} telah berhasil register ke dalam "Binomo".')
             if csv_checker(files):
                 # pemberian id pada user
                 id = int(data[length(data)-1][0]) + 1
@@ -54,10 +58,11 @@ def register(files, kepemilikan_user_files):
                 edit_files (str(id) , name , username, password, 'user' , str(0) , files)
             else:
                 edit_files (str(1) , name , username, password, 'user', str(0) ,files)
+            return print(f'Username {username} telah berhasil register ke dalam "Binomo".')
 
     else:
-        print("Username hanya dapat mengandung alfabet A-Za-z, underscore “_”, strip “-”, dan angka 0-9.")
+        return print("Username hanya dapat mengandung alfabet A-Za-z, underscore “_”, strip “-”, dan angka 0-9.")
 
 # Run
-register(r'components\user.csv', r'components\kepemilikan.csv')
+register(r'components\user.csv')
 

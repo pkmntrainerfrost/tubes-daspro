@@ -130,3 +130,27 @@ def edit_files_2(table ,files):
                     else:
                         editable_files.write(str(table[i][j][k]) + '\n')
     editable_files.close()
+
+# FUNGSI MENGECEK KONDISI INPUT
+def space_checker(string):
+    # KAMUS
+    # contains, new_string : str { karakter yang diperbolehkan, hasil }
+    # space_count : int { menghitung jumlah spasi }
+    # i , j : int
+    # ALGORITMA
+    contains = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890_-'
+    space_count = 0
+    new_string = ''
+    for i in string:
+        if i == ' ':
+            space_count += 1
+            if space_count < 2:
+                    new_string += i
+        for j in range(length(contains)):
+            if i == contains[j]:
+                new_string += i
+                space_count = 0  
+    if new_string == '' or new_string == ' ':
+        return False
+    else:
+        return True
