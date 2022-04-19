@@ -58,7 +58,7 @@ def sort_game(list,key,scheme="+"):
                     r += [i]
 
         # OUTPUT
-        return sort_game(l,scheme) + [pivot] + sort_game(r,scheme)
+        return sort_game(l,key,scheme) + [pivot] + sort_game(r,key,scheme)
     else:
         error_msg = 'Skema sorting tidak valid!'
         return error_msg
