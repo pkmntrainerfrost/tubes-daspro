@@ -1,9 +1,6 @@
 import csv
 from binomo.py import parse, length, last, init
 
-# import sort from function directory
-data = csv.reader(open('game.csv'),delimiter=',')
-
 # Mission Board
 # 1. Mencari cara sorting data sesuai kategori
 # 2. Mencari cara melakukan display data
@@ -113,33 +110,7 @@ def parse(file):
 
     # KEMBALIKAN LIST OF LIST OF STR data
     return data
-
-# def data_finder_ascend(category):
-#     # note : print harus diganti
-#     if category == "":
-#         data.sort(key=operator.itemgetter(1)) # untuk id
-#         print(data)
-#     elif category == "tahun_rilis":
-#         data.sort(key=operator.itemgetter(4))
-#         print(data)
-#     elif category == "harga":
-#         data.sort(key=operator.itemgetter(5))
-#         print(data)
-#     else:
-#         print("Skema sorting tidak valid!")
-
-# def data_finder_descend(category):
-#     # note : print harus diganti
-#     if category == "tahun_rilis":
-#         data.sort(key=operator.itemgetter(4), reverse = True)
-#         print(data)
-#     elif category == "harga":
-#         data.sort(key=operator.itemgetter(5), reverse = True)
-#         print(data)
-#     else:
-#         print("Skema sorting tidak valid!")
     
-
 # Main Function
 def list_game_toko():
     data = parse('game.csv')
