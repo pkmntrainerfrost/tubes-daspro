@@ -13,13 +13,14 @@ path_riwayat = r'components\riwayat.csv'
 # After login process
 # FUNCTION BUY GAME
 def buy_game(game_files, user_files, kepemilikan_user_files, riwayat_files, id):
+    # Prosedur bagi user untuk membeli game
     # Akses : user
     # KAMUS
     # kepemilikan, data_game, data_username : files { csv }
     # arr_id : array of array { tabel data untuk id dari data kepemilikan }
     # index3, index : integer { index untuk file user, index untuk file game }
     # game_id : string { input user }
-    # found, found_game, loop : Boolean
+    # found, found_game, loop : Boolean { variabel validasi }
     # id : string { id user }
     # stok, saldo : integer { stok game tersisa, saldo user }
     # memory_data_riwayat, memory_data_game, memory_data_user, memory_kepemilikan : array of string { memori }
@@ -96,20 +97,6 @@ def buy_game(game_files, user_files, kepemilikan_user_files, riwayat_files, id):
                     memory_data_game = data_game
                     memory_data_user = data_username
                     memory_kepemilikan = kepemilikan
-
-                    # JIKA SAVE
-                    # f = open(riwayat_user_files , 'a')
-                    # f.write(game_id + ';' + data_game[index][1] +';' + data_game[index][4] + ';' + id + ';' + str(datetime.now().year) + '\n')
-
-                    # MENGOSONGI CSV
-                    # clear_csv(game_files)
-                    # clear_csv(user_files)
-                    # clear_csv(kepemilikan_user_files)
-                    # for m in range(length(data_game)):
-                    #     edit_files(data_game[m][0], data_game[m][1], data_game[m][2], data_game[m][3], data_game[m][4], data_game[m][5], game_files)
-                    #     edit_files(data_username[m][0], data_username[m][1], data_username[m][2], data_username[m][3], data_username[m][4], data_username[m][5], user_files)
-                    # edit_files_2(kepemilikan, kepemilikan_user_files)
-
                     print(f"Game “{data_game[index][1]}” berhasil dibeli!")
                     return memory_data_game, memory_data_riwayat, memory_data_user, memory_kepemilikan
             break

@@ -3,8 +3,9 @@ from components.csv import *
 from components.binomo import length
 
 # After login process
-def topup (files):
+def topup(files):
     # Topup function
+    # Prosedur untuk menambahkan saldo kepada User
     # Akses : admin
     # I.S. Menerima username dan jumlah nominal top up
     # F.S. Menambah saldo sesuai dengan username atau tidak jika username atau nominal tidak valid

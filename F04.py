@@ -5,8 +5,8 @@ from components.binomo import length, is_integer
 def tambah_game(files): # files = game.csv
 # Tambah Game Function
 # Akses : Admin
-# I.S. Menerima input informasi game baru yang akan ditambahkan
-# F.S. Melakukan penambahan game pada memory variabel dan mengembalikan semua data
+# Untuk menambah game yang dijual pada toko
+
 # KAMUS
 # not_valid : Bool { variabel kondisi untuk break while }
 # nama_game, kategori : string { data game }
@@ -47,21 +47,10 @@ def tambah_game(files): # files = game.csv
             # MEMORY DATA UNTUK DISAVE
             memory_data = data + [['GAME'+str(id), nama_game, kategori, tahun_rilis, harga, stok_awal]]
             
-            # JIKA SAVE
-            # edit_files ('GAME' + str(id) , nama_game , kategori, tahun_rilis, harga , stok_awal , files)
-            # f = open(kepemilikan_files, 'a')
-            # f.write('GAME' + str(id) + ';' + '\n')
-            # f.close()
         else:
             # jika belum ada game , game yang ditambah pertama kali akan diberi id = 1
             # MEMORY DATA UNTUK DISAVE
             memory_data = [['GAME'+str(1), nama_game, kategori, tahun_rilis, harga, stok_awal]]
-
-            # JIKA SAVE
-            # edit_files ('GAME'+ str(1) , nama_game , kategori, tahun_rilis, harga, stok_awal ,files)
-            # f = open(kepemilikan_files, 'a')
-            # f.write('GAME' + str(1) + ';' + '\n')
-            # f.close()
             
         print("Selamat! Berhasil menambahkan game", nama_game)
         # MENGEMBALIKAN MEMORY DATA

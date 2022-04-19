@@ -2,11 +2,14 @@
 from components.csv import *
 from components.binomo import length
 
+# FUNCTION LOGIN
+# Untuk melakukan login ke dalam sistem
+
 # KAMUS
 # admin_username, admin_password : string { data admin }
 # admin : array of string { data function yang bisa dirun dalam state admin }
 # user : array of string { data function yang bisa dirun dalam state user }
-# not_admin_msg, not_user_msg, error_before_login, error, greeting : string
+# not_admin_msg, not_user_msg, error_before_login, error, greeting : string { pesan-pesan }
 # data : array of array of string { csv file }
 # username, password : string { input }
 # success, logged_in, admin_status : Boolean { hasil login }
@@ -26,7 +29,7 @@ not_admin_msg = "Maaf, anda tidak memiliki izin untuk menjalankan perintah berik
 not_user_msg = "Maaf, anda harus menjadi user untuk melakukan hal tersebut."
 error_before_login = "Maaf, anda harus login terlebih dahulu untuk mengirim perintah selain “login”"
 
-# LOGIN FUNCTION
+# LOGIN
 def login(files):
     # DATA CSV
     data = parse(files)
@@ -79,7 +82,7 @@ def login(files):
                 print(greeting)
         return user_id
 
-# PROGRAM SETELAH LOGIN
+# PROGRAM SETELAH LOGIN (hanya kerangka untuk mengetes fungsi login)
 def after_login():
     # INPUT FIELD
     select = input(">>>")
@@ -94,7 +97,7 @@ def after_login():
             # FUNCTION HERE
             print("Proceed>>>")
 
-# PROGRAM UTAMA
+# PROGRAM UTAMA (hanya kerangka untuk mengetes fungsi login)
 def main(files):
     # FUNCTION INPUTS HERE
     select = input(">>>")

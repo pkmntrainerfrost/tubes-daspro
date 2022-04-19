@@ -4,12 +4,11 @@ from components.binomo import length
 
 def ubah_game(files): # files = game.csv
     # Ubah Game Function
-    # I.S. Menerima input ID Game yang ingin diubah
-    # F.S. Mengganti informasi dari ID Game yang dipilih dan mengembalikan seluruh data
+    # Mengubah informasi game pada toko game
     # Prekondisi : stock tidak bisa diubah
     # KAMUS
     # id, nama_game, kategori : string { input informasi data baru }
-    # found : Bool
+    # found : Bool { variabel validasi }
     # tahun_rilis : integer { data baru untuk tahun rilis }
     # harga : real { data baru untuk harga }
     # data : arr of arr of str { data game.csv }
@@ -23,7 +22,7 @@ def ubah_game(files): # files = game.csv
         kategori = input("Masukkan kategori: ")
         tahun_rilis = input("Masukkan tahun rilis: ")
         harga = input("Masukkan harga: ")
-        
+
         # DATA BARU
         data_baru = [id , nama_game , kategori, tahun_rilis, harga, ""] 
 
@@ -43,17 +42,8 @@ def ubah_game(files): # files = game.csv
             if found == False:
                 print("ID Game tersebut tidak ditemukan.")
             else:
+                print("Game dengan ID: ",id," berhasil diubah.")
                 return data
-                
-                # JIKA SAVE
-                # PROGRAM SEMENTARA KARENA SAVE TERDAPAT PADA F16
-                # ans = input("Save? (y/n): ")
-                # if ans == "y":
-                #     # MENGOSONGI CSV
-                #     clear_csv(files)
-                #     # MENGISI ULANG DENGAN DATA YANG TELAH DIGANTI
-                #     for i in range(len(data)):
-                #         edit_files(data[i][0], data[i][1], data[i][2], data[i][3], data[i][4], data[i][5], files)
         else:
             print("Field ID tidak boleh kosong!")
             

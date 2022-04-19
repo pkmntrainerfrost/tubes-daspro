@@ -1,19 +1,18 @@
 # import functions module
-from components.csv import *
+from components.csv import csv_checker, space_checker, edit_files, parse
+# from components.parser import parse (error indexing)
 from components.binomo import length
-
-# csv path files
 
 def register(files):
 # Register function
 # Akses : Admin & User
-# I.S. Menerima input Nama, Username , Password kemudian divalidasi
-# F.S. Username berhasil terdaftar atau gagal daftar jika sudah username tidak unik / sudah ada
+# Untuk melakukan registrasi user baru
+
 # KAMUS
-# name, username, password, word : str
-# valid_username, existing_account : bool
-# orde, id : int
-# data : array of array of str
+# name, username, password, word : str { nama user, username, password, variabel pengecek }
+# valid_username, existing_account : bool { variabel validasi }
+# orde, id : int { varibel untuk konversi karakter yang diperbolehkan, id otomatis }
+# data : array of array of str { data user csv }
 
 #ALGORITMA
     # INPUT DATA
