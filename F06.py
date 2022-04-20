@@ -3,7 +3,8 @@ from components.binomo import *
 from components.csv import *
 
 def ubahstok(files): # files = game.csv
-    # Ubah Game Function
+    # Untuk menghubah stok game 
+    # akses admin
     # I.S. Menerima input ID Game yang ingin diubah stoknya
     # F.S. Mengganti informasi dari ID Game yang dipilih
     # KAMUS
