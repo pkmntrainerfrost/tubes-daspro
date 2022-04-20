@@ -13,12 +13,12 @@ def ubahstok(files): # files = game.csv
 #ALGORITMA
     data = parse(files)
     if csv_checker(files):
-        id=input("Masukkan ID game :")
-        # INPUT ID 
+        # INPUT ID
+        id=input("Masukkan ID game :") 
         if (id != ""):
             found = False
         #MENCARI INDEX DARI ID    
-            for i in range(len(data)):
+            for i in range(length(data)):
                 for j in data[i]:
                     if id == data[i][0]:
                         index=i
@@ -28,15 +28,15 @@ def ubahstok(files): # files = game.csv
             if found == False :
                 print("Game not found")
             else :  
-                jumlah=int(input("Masukkan jumlah :"))
-                if (data[index][5]+jumlah)<0:
-                    print("Stok game {} gagal dikurangi karena stok kurang. Stok sekarang: {} (<{})".format(data[index][1],data[index][5],-1*jumlah))
+                tambah_stok=int(input("Masukkan jumlah :"))
+                if (data[index][5]+tambah_stok)<0:
+                    print("Stok game {} gagal dikurangi karena stok kurang. Stok sekarang: {} (<{})".format(data[index][1],data[index][5],-1*tambah_stok))
                 else : 
-                    if jumlah>=0 :
-                        data[index][5]+=jumlah
+                    if tambah_stok>=0 :
+                        data[index][5]+=tambah_stok
                         print("Stok game {} berhasil ditambahkan. Stok sekarang: {}".format(data[index][1],data[index][5]))
                     else : 
-                        data[index][5]+=jumlah
+                        data[index][5]+=tambah_stok
                         print("Stok game {} berhasil dikurangi. Stok sekarang: {}".format(data[index][1],data[index][5]))
             
         else:
