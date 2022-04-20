@@ -134,6 +134,32 @@ def delete(list,element,instances=1):
 
 def strain(list,element,inverse=False,matrix=False,col=0):
 
+    if type(col) == int:
+        col = [col]
+    if type(element) == str:
+        element = [element]
+
+    if matrix:
+        new_matrix = []
+        for row in list:
+            match = True
+            for i in range(length(element)):
+                if (row[col[i]] == element[i]) == inverse:
+                    match = False
+                    break
+            if match:
+                new_matrix += row
+        return new_matrix
+    else:
+        new_list = []
+        for member in list:
+            for i in range(length(element)):
+                if (member == element[i]) != inverse:
+                    new_list += [member]
+                    break
+        return new_list
+
+
     if matrix:
         new_matrix = []
         for i in list:
@@ -359,3 +385,16 @@ def sort(list,scheme="+"):
 
         # Output - rekurens
         return sort(l,scheme) + [pivot] + sort(r,scheme)
+
+def index(list,element,occurence=1):
+
+    if occurence == "last":
+        for i in range(length(list)-1,-1,-1):
+            if list[i] == element:
+                return i
+    else:
+        for i in range(length(list)):
+            if list[i] == element:
+                return i
+
+    return -1

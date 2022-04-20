@@ -21,6 +21,14 @@ import time
 from lists import *
 from parser import *
 
-games = parse("game.csv")
+from F11 import *
+from F15 import *
+from F16 import *
 
-print(strain(games,"GAME001",False,True,0))
+parser = argparse.ArgumentParser()
+parser.add_argument("nama_folder",type=str)
+args = parser.parse_args()
+
+nama_folder = args.nama_folder
+
+(data_user,data_game,data_riwaya,data_kepemilikan) = load(nama_folder)

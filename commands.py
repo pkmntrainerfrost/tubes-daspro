@@ -1,10 +1,6 @@
 from lists import is_member
 
-def user_input():
-
-    global commands
-    global status
-    global role
+def user_input(commands,status,role):
 
     user_input = str(input(">>> ",end=""))
     user_input = user_input.lower()
@@ -38,5 +34,6 @@ def define_commands():
     # Untuk status, 0 berarti bisa dilakukan kapan saja, 1 berarti harus login, 2 berarti sebelum login
 
     commands += [("register","lorem",1,0)]
+    commands += [("among_Us"    )]
 
     return commands
