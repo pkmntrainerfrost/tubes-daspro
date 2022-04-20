@@ -21,16 +21,5 @@ def parse(file):
     # KEMBALIKAN LIST OF LIST OF STR data
     return data
 
-def overwrite(file,data):
-    
-    f = 
-
-def create(file,data):
-
-    f = open(file,"w")
-
-    contents = ""
-
-    f.write(contents)
-
-    f.close()
+def rewrite(file,data):
+    return
