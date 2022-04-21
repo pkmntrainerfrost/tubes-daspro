@@ -1,8 +1,7 @@
 # import functions module
-from components.binomo import *
-from components.csv import *
+from functions_lists import length
+from .csv import *
 from datetime import datetime
-# from .F03 import login
 
 game = r'components\game.csv'
 user = r'components\user.csv'
@@ -12,7 +11,7 @@ path_riwayat = r'components\riwayat.csv'
 
 # After login process
 # FUNCTION BUY GAME
-def buy_game(game_files, user_files, kepemilikan_user_files, riwayat_files, id):
+def buy_game(data_game, data_user, data_kepemilikan, data_riwayat, id):
     # Prosedur bagi user untuk membeli game
     # Akses : user
     # KAMUS
@@ -27,10 +26,10 @@ def buy_game(game_files, user_files, kepemilikan_user_files, riwayat_files, id):
     
     # ALGORITMA
     # INISIALISASI DATA DARI CSV
-    kepemilikan = parse(kepemilikan_user_files) # data kepemilikan
-    data_game = parse(game_files) # data game (stok)
-    data_username = parse(user_files) # data user (username)
-    data_riwayat = parse(riwayat_files) # data riwayat (riwayat user)
+    kepemilikan = data_kepemilikan[1] # data kepemilikan
+    data_game = data_game[1] # data game (stok)
+    data_username = data_user[1] # data user (username)
+    data_riwayat = data_riwayat[1] # data riwayat (riwayat user)
 
     # INISIALISASI DATA KEPEMILIKAN
     for i in range(length(kepemilikan)):
@@ -115,14 +114,3 @@ def buy_game(game_files, user_files, kepemilikan_user_files, riwayat_files, id):
     elif int(data_game[i][4]) >  int(data_username[index3][5]):
         print("Saldo anda tidak cukup.")
     return memory_data_game, memory_data_riwayat, memory_data_user, memory_kepemilikan
-
-# Run
-# data = buy_game(game, user, path_kepemilikan, path_riwayat, id) # id dari F03
-# data_game = data[0]
-# data_riwayat = data[1]
-# data_user = data[2]
-# data_kepemilikan = data[3]
-# print(data_game)
-# print(data_riwayat)
-# print(data_user)
-# print(data_kepemilikan)

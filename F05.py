@@ -1,8 +1,8 @@
 # import functions modules
-from components.csv import parse, csv_checker
-from components.binomo import length
 
-def ubah_game(files): # files = game.csv
+from functions_lists import length
+
+def ubah_game(data_game): # files = game.csv
     # Ubah Game Function
     # Mengubah informasi game pada toko game
     # Prekondisi : stock tidak bisa diubah
@@ -13,9 +13,9 @@ def ubah_game(files): # files = game.csv
     # harga : real { data baru untuk harga }
     # data : arr of arr of str { data game.csv }
 #ALGORITMA
-    data = parse(files)
+    data = data_game[1]
     # MENGVALIDASI KONDISI CSV
-    if csv_checker(files):
+    if length(data) > 0:
         # INPUT DATA BARU
         id = input("Masukkan ID game: ")
         nama_game = input("Masukkan nama game: ")
@@ -50,5 +50,3 @@ def ubah_game(files): # files = game.csv
     # JIKA CSV KOSONG / BELUM ADA GAME MAKA PESAN ERROR
     else:
         print("Tidak ada data game yang dapat diubah (data kosong).")
-# Run
-ubah_game('components\game.csv')

@@ -1,9 +1,9 @@
 # import function module
-from components.csv import *
-from components.binomo import length
+from .csv import *
+from functions_lists import length
 
 # After login process
-def topup(files):
+def topup(data_user):
     # Topup function
     # Prosedur untuk menambahkan saldo kepada User
     # Akses : admin
@@ -17,7 +17,7 @@ def topup(files):
     # idx_username : integer { index user_id yang memenuhi }
 #ALGORITMA
     # LOAD DATA
-    data = parse(files)
+    data = data_user[1]
     # INPUT
     username = input("Masukkan username: ")
     nominal_topup = int(input("Masukkan saldo: "))
@@ -50,6 +50,3 @@ def topup(files):
                         name = data[j][1]
                 print(f"Top up berhasil. Saldo {name} bertambah menjadi {saldo_updated}.")
                 return data
-                
-# Run
-topup('components\\user.csv')

@@ -1,8 +1,9 @@
 # import functions module
-from components.csv import *
-from components.binomo import length, is_integer
+from .csv import *
+from binomo_old import *
+from functions_lists import *
 
-def tambah_game(files): # files = game.csv
+def tambah_game(data_game): # files = game.csv
 # Tambah Game Function
 # Akses : Admin
 # Untuk menambah game yang dijual pada toko
@@ -17,8 +18,8 @@ def tambah_game(files): # files = game.csv
 # memory_data : arr of arr of str { data temporary setelah perubahan }
 
 #ALGORITMA
-    # PARSE CSV
-    data = parse(files)
+    # Data dari CSV
+    data = data_game[1]
     # VALIDASI INPUT
     not_valid = True
     while(not_valid):
@@ -40,7 +41,7 @@ def tambah_game(files): # files = game.csv
 
     # PROGRAM SETELAH INPUT BENAR
     if (not_valid == False):
-        if csv_checker(files):
+        if length(data) > 0:
             # pemberian id pada game
             id = length(data) + 1
             # id akan diincrement berdasarkan urutan game yang ada
@@ -55,7 +56,3 @@ def tambah_game(files): # files = game.csv
         print("Selamat! Berhasil menambahkan game", nama_game)
         # MENGEMBALIKAN MEMORY DATA
         return memory_data
-
-# Run        
-tambah_game('components\game.csv')
-            

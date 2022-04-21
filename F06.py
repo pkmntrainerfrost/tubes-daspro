@@ -1,8 +1,7 @@
 # import functions module
-from components.binomo import *
-from components.csv import *
+from functions_lists import length
 
-def ubahstok(files): # files = game.csv
+def ubahstok(data_game): # files = game.csv
     # Untuk menghubah stok game 
     # akses admin
     # I.S. Menerima input ID Game yang ingin diubah stoknya
@@ -11,8 +10,8 @@ def ubahstok(files): # files = game.csv
     # id,  : string { input informasi data baru }
     # data : arr of arr of str { data game.csv }
 #ALGORITMA
-    data = parse(files)
-    if csv_checker(files):
+    data = data_game[1]
+    if length(data) > 0:
         # INPUT ID
         id=input("Masukkan ID game :") 
         if (id != ""):
