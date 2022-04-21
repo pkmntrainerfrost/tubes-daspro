@@ -16,7 +16,13 @@ def parse(file):
     f.close()
 
     data = separate(raw_data)
-    data = (head(data),tail(data))
+
+    if data == []:
+        data = ([],[])
+    elif type(data[0]) != list:
+        data = (data,[])
+    else:
+        data = (head(data),tail(data))
 
     # KEMBALIKAN LIST OF LIST OF STR data
     return data

@@ -159,28 +159,6 @@ def strain(list,element,inverse=False,matrix=False,col=0):
                     break
         return new_list
 
-
-    if matrix:
-        new_matrix = []
-        for i in list:
-            if inverse:
-                if i[col] != element:
-                    new_matrix += i
-            else:
-                if i[col] == element:
-                    new_matrix += i
-        return new_matrix
-    else:
-        new_list = []
-        for i in list:
-            if inverse:
-                if i[col] != element:
-                    new_list += i
-            else:
-                if i[col] == element:
-                    new_list += i
-        return new_list
-
 def separate(string,separator=";"):
 
     # Mengembalikan suatu list yang berisi string-string kecil hasil separasi string berdasarkan separator tertentu - pengganti split()

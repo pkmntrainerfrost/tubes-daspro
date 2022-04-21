@@ -1,7 +1,8 @@
 # import functions module
 from .csv import space_checker, parse
+from functions_strings import *
 # from components.parser import parse (error indexing)
-from functions_lists import length
+from functions_lists import *
 
 def register(data_user):
 # Register function
@@ -16,38 +17,38 @@ def register(data_user):
 
 #ALGORITMA
     # INPUT DATA
-    name = input("Nama : ")
-    username = input("Username : ")
-    password = input("Password : ")
+    name = input("Masukkan nama: ")
+    username = input("Masukkan username: ")
+    password = input("Masukkan password: ")
 
     # PENGECEKAN INPUT NAMA DAN PASSWORD
-    if not(space_checker(name)) or not(space_checker(password)):
-        return print("Nama atau Password tidak boleh kosong")
+    if is_empty_string(name) or is_empty_string(username) or is_empty_string(password):
+        print("Field tidak diperbolehkan kosong!")
+        return data_user
     
     # PENGECEKAN KENUNIKAN USERNAME
-    valid_username = False
-    for word in username:
-        orde = ord(word)
+    valid_username = True
+    for char in username:
+        orde = ord(char)
         # mengecek setiap karakter pada username
-        if ((65<=orde<=90) or (97<=orde<=122) or word == '_' or word == '-' or (48<=orde<=57)):
-            valid_username = True
-        else:
+        if not (((65<=orde<=90) or (97<=orde<=122) or char == '_' or char == '-' or (48<=orde<=57))):
             valid_username = False
             break
 
     # HASIL PENGECEKAN USERNAME
     if valid_username:   
-        data = data_user[1]
         existing_account = False
 
         # MEMVALIDASI PEMAKAIAN USERNAME
-        for i in range(length(data)):
-            if username == data[i][2]:
+        for user in data_user[1]:
+            if user[index(data_user[0],"username")] == username:
                 existing_account = True
+                break
                 
         # HASIL VALIDASI USERNAME
-        if existing_account:
-            return print(f"Username {username} sudah terpakai, silahkan menggunakan username lain.")
+        if existing_account: 
+            print(f"Username {username} sudah terpakai, silahkan menggunakan username lain.")
+            return data_user
         else:
             print(f'Username {username} telah berhasil register ke dalam "Binomo".')
             if length(data) > 0:
@@ -59,5 +60,6 @@ def register(data_user):
             else:
                 data = [[str(1) , name , username, password, 'user', str(0)]]
                 return data
-    else:
-        return print("Username hanya dapat mengandung alfabet A-Za-z, underscore “_”, strip “-”, dan angka 0-9.")
+    else: 
+        print("Username hanya dapat mengandung alfabet A-Za-z, underscore “_”, strip “-”, dan angka 0-9.")
+        return 
