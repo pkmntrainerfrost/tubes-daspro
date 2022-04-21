@@ -1,4 +1,5 @@
-from lists import *
+from functions_lists import *
+from functions_io import print_table
 
 def search_game_at_store(data_game):
 
@@ -19,6 +20,6 @@ def search_game_at_store(data_game):
     
     match = strain(data_game[1],element,False,True,col)
 
-    print(match)
+    print_table(match)
 
 

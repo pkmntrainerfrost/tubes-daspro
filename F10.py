@@ -1,4 +1,5 @@
-from lists import *
+from functions_lists import *
+from functions_io import print_table
 
 def search_my_game(user,data_game,data_kepemilikan):
 
@@ -7,7 +8,7 @@ def search_my_game(user,data_game,data_kepemilikan):
     id = ("id",str(input("Masukkan ID Game: ")))
     tahun_rilis = ("tahun_rilis",str(input("Masukkan Tahun Rilis Game: ")))
 
-    params = [id,user]
+    params = [id,user_id]
     element = []
     col = []
 
@@ -16,12 +17,18 @@ def search_my_game(user,data_game,data_kepemilikan):
             element += [i[1]]
             col += [index(data_kepemilikan[0],i[0])]
     
-    games = strain(data_kepemilikan,element,False,True,col)
+    games_owned = strain(data_kepemilikan[1],element,False,True,col)
 
-    if tahun_rilis[1] != "":
-        games = strain(data_game)
+    element = []
+    col = []
+    games = []
 
-    # games = strain(data_kepemilikan,user,False,True,index(data_kepemilikan,"user_id"))
-
-    games = strain(data_game,games,False,True,index(data_game,"tahun_rilis"))
+    for i in games_owned:
+        element = [i[0]]
+        col = [index(data_game[0],"id")]
+        if tahun_rilis[1] != "":
+            element += [tahun_rilis[1]]
+            col += [index(data_game[0],"tahun_rilis")]
+        games += strain(data_game[1],element,False,True,col)
     
+    print_table(games)    

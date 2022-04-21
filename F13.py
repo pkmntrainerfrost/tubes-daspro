@@ -1,4 +1,5 @@
-from lists import *
+from functions_lists import *
+from functions_io import print_table
 
 def riwayat(user,data_riwayat):
     
@@ -7,4 +8,4 @@ def riwayat(user,data_riwayat):
     if riwayat == []:
         print("gk punya game lu miskin")
     else:
-        
+        print_table(riwayat)

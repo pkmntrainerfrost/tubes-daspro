@@ -1,4 +1,4 @@
-from lists import *
+from functions_lists import *
 
 def parse(file):
 
@@ -21,15 +21,28 @@ def parse(file):
     # KEMBALIKAN LIST OF LIST OF STR data
     return data
 
-def overwrite(file,data):
-    
-    f = 
+def write(file,data,create=False):
 
-def create(file,data):
-
-    f = open(file,"w")
+    if create:
+        f = open(file,"x")
+    else:
+        f = open(file,"w")
 
     contents = ""
+
+    rows = length(data[1])
+    cols = length(data[0])
+
+    for header in range(rows):
+        contents += data[0][header] + ";"
+    if rows != 0:
+        contents += "\n"
+
+    for row in range(rows):
+        for col in range(cols):
+            contents += data[1][row][col] + ";"
+        if row != rows - 1:
+            contents += "\n"
 
     f.write(contents)
 

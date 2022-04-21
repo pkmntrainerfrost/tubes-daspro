@@ -17,12 +17,14 @@ import math
 import os
 import sys
 import time
-from commands import user_input
 
-from lists import *
-from parser import *
+from functions_io import *
+from functions_lists import *
+from functions_parser import *
 
+from F03 import *
 from F11 import *
+from F14 import *
 from F15 import *
 from F16 import *
 
@@ -34,19 +36,21 @@ nama_folder = args.nama_folder
 (data_user,data_game,data_riwayat,data_kepemilikan) = load(nama_folder)
 
 user_id = 0
-status = 0
 role = 0
+status = 2
 
 while __name__ == "__main__":
 
-    command = user_input()
+    commands = define_commands()
+
+    command = user_input(commands,role,status)
 
     if command != False:
         
         if command == "register":
             register()
         if command == "login":
-            login()
+            (user_id,role,status) = login(data_user)
         if command == "tambah_game":
             tambah_game()
         if command == "ubah_game":
@@ -61,13 +65,15 @@ while __name__ == "__main__":
             list_game()
         if command == "search_my_game":
             search_my_game()
+        if command == "search_game_at_store":
+            search_game_at_store()
         if command == "topup":
             topup()
         if command == "riwayat":
             riwayat()
         if command == "help":
-            help()
+            bantuan(commands,role,status)
         if command == "save":
             save()
         if command == "exit":
-            exit()
+            terminate()

@@ -1,4 +1,4 @@
-from lists import is_member
+from functions_lists import is_member
 
 def user_input(commands,status,role):
 

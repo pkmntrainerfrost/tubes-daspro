@@ -1,5 +1,5 @@
-from lists import *
-from parser import *
+from functions_lists import *
+from functions_parser import *
 
 def load(nama_folder):
 
