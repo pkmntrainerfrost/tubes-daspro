@@ -1,6 +1,7 @@
 # import functions module
 from components.binomo import *
 from components.csv import *
+from functions_io import print_table
 from datetime import datetime
 
 def list_game(files):
