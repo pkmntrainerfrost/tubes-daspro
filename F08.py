@@ -1,116 +1,53 @@
 # import functions module
-from functions_lists import length
-from .csv import *
-from datetime import datetime
+from functions_lists import *
+from datetime import date
 
-game = r'components\game.csv'
-user = r'components\user.csv'
-path_kepemilikan = r'components\kepemilikan.csv'
-path_riwayat = r'components\riwayat.csv'
 # id = login(user)
 
 # After login process
 # FUNCTION BUY GAME
-def buy_game(data_game, data_user, data_kepemilikan, data_riwayat, id):
-    # Prosedur bagi user untuk membeli game
-    # Akses : user
-    # KAMUS
-    # kepemilikan, data_game, data_username : files { csv }
-    # arr_id : array of array { tabel data untuk id dari data kepemilikan }
-    # index3, index : integer { index untuk file user, index untuk file game }
-    # game_id : string { input user }
-    # found, found_game, loop : Boolean { variabel validasi }
-    # id : string { id user }
-    # stok, saldo : integer { stok game tersisa, saldo user }
-    # memory_data_riwayat, memory_data_game, memory_data_user, memory_kepemilikan : array of string { memori }
-    
-    # ALGORITMA
-    # INISIALISASI DATA DARI CSV
-    kepemilikan = data_kepemilikan[1] # data kepemilikan
-    data_game = data_game[1] # data game (stok)
-    data_username = data_user[1] # data user (username)
-    data_riwayat = data_riwayat[1] # data riwayat (riwayat user)
 
-    # INISIALISASI DATA KEPEMILIKAN
-    for i in range(length(kepemilikan)):
-        arr_id = parse2(kepemilikan[i][1])
-        kepemilikan[i][1] = arr_id
+def buy_game(user_id,data_game,data_user,data_riwayat,data_kepemilikan):
 
-    # MENCARI USER ID
-    index3 = 0
-    for i in range(length(data_username)):
-        if data_username[i][0] == id:
-            index3 = i # mencari index dari account
+    id_game = str(input("Masukkan ID Game: "))
 
-    # INPUT
-    game_id = input("Masukkan ID Game: ")
+    user = strain(data_user[1],str(user_id),False,True,get_index(data_user[0],"id"))
+    game = strain(data_game[1],id_game,False,True,get_index(data_game[0],"id"))
 
-    # Variabel untuk validasi
-    found = False
-    found_game = False
-    loop = True
+    if game == []:
+        print("Game tidak ditemukan!")
+    else:
+        if strain(data_kepemilikan[1],[id_game,str(user_id)],False,True,[get_index(data_kepemilikan[0],"game_id"),get_index(data_kepemilikan[0],"user_id")]) != []:
+            print("Anda sudah memiliki game tersebut!")
+        else:
+            user_row = get_index(data_user[1],user)
+            game_row = get_index(data_game[1],game)
 
-    # PROSES MENCARI GAME ID
-    for i in range(length(data_game)):
-        # JIKA GAME ID DITEMUKAN
-        if data_game[i][0] == game_id:
-            index = i # mencari index dari game yang dicari
-            loop = False
-            found_game = False
-            found = False
+            harga = int(game[get_index(data_game[0],"harga")])
+            stok = int(game[get_index(data_game[0],"stok")]) - 1
 
-            # MEMVALIDASI KONDISI SALDO DAN STOK
-            if (int(data_game[i][4]) <=  int(data_username[index3][5])) and int(data_game[i][5]) > 0:
-                # MEMVALIDASI KEPEMILIKAN GAME
-                if length(kepemilikan) != 0:
-                    for j in range(length(kepemilikan)):
-                        if kepemilikan[j][0] == game_id:
-                            found_game = True
-                            for k in range(length(kepemilikan[j][1])):
-                                if id == kepemilikan[j][1][k]:
-                                    found = True
-                                    print("Anda sudah memiliki Game tersebut!")
-                                    break
+            saldo = int(user[get_index(data_game[0],"saldo")]) - harga
 
-                            # JIKA USER BELUM MEMILIKI GAME TERSEBUT
-                            if found == False:
-                                kepemilikan[j][1] += [id]
+            if saldo < 0:
+                print("Saldo anda tidak cukup untuk membeli Game tersebut!")
 
-                    # JIKA GAME ID BELUM ADA DI DALAM FILE KEPEMILIKAN
-                    if found_game == False:
-                        kepemilikan += [[game_id, [id]]]
+            elif stok < 0:
+                print("Stok Game tersebut sedang habis!")
+            
+            else:
+                game_title = game[get_index(data_game[0],"nama")]
+                tahun_beli = str(date.today().year)
 
-                # JIKA DATA KEPEMILIKAN MASIH KOSONG
-                else:
-                    kepemilikan += [[game_id, [id]]]
+                user[get_index(data_game[0],"saldo")] = str(saldo)
+                game[get_index(data_game[0],"stok")] = str(stok)
 
-                # MENGUPDATE ISI ARRAY
-                if found == False:
-                    stok = int(data_game[index][5])
-                    data_game[index][5] = str(stok - 1)
-                    saldo = int(data_username[index3][5])
-                    data_username[index3][5] = str(saldo - int(data_game[index][4]))
-                    
-                    # MENYIMPAN DI MEMORY DATA
-                    memory_data_riwayat = data_riwayat + [[game_id, data_game[index][1], data_game[index][4], id, str(datetime.now().year)]]
-                    memory_data_game = data_game
-                    memory_data_user = data_username
-                    memory_kepemilikan = kepemilikan
-                    print(f"Game “{data_game[index][1]}” berhasil dibeli!")
-                    return memory_data_game, memory_data_riwayat, memory_data_user, memory_kepemilikan
-            break
-    # MEMORY VARIABEL
-    memory_data_riwayat = data_riwayat
-    memory_data_game = data_game
-    memory_data_user = data_username
-    memory_kepemilikan = kepemilikan
-    # JIKA GAME ID TIDAK DITEMUKAN
-    if loop == True:
-        print("Game ID tersebut tidak ditemukan.")
-    # JIKA STOK DARI GAME HABIS
-    elif int(data_game[index][5]) <= 0:
-        print("Out of Stock.")
-    # JIKA SALDO TIDAK CUKUP
-    elif int(data_game[i][4]) >  int(data_username[index3][5]):
-        print("Saldo anda tidak cukup.")
-    return memory_data_game, memory_data_riwayat, memory_data_user, memory_kepemilikan
+                data_user = (data_user[0],konkat(segment(data_user[1],0,user_row),[user],segment(data_user[1],user_row + 1)))
+                data_game = (data_game[0],konkat(segment(data_game[1],0,game_row),[game],segment(data_game[1],game_row + 1)))
+                data_riwayat = (data_riwayat[0],konsdot(data_riwayat[1],[id_game,game_title,str(harga),str(user_id),tahun_beli]))
+                data_kepemilikan = (data_kepemilikan[0],konsdot(data_kepemilikan[1],[id_game,str(user_id)]))
+
+                print('Game "' + game_title + '" berhasil dibeli!')
+
+                return (data_user,data_game,data_riwayat,data_kepemilikan)
+            
+    return (data_user,data_game,data_riwayat,data_kepemilikan)

@@ -2,6 +2,7 @@
 # from components.csv import *
 # from components.binomo import length
 from functions_lists import *
+from B01 import *
 
 # FUNCTION LOGIN
 # Untuk melakukan login ke dalam sistem
@@ -39,15 +40,21 @@ def login(data_user):
     username = ("username",str(input("Masukkan username: ")))
     password = ("password",str(input("Masukkan password: ")))
 
-    col = [index(data_user[0],username[0]),index(data_user[0],password[0])]
-    element = [username[1],password[1]]
+    col = [get_index(data_user[0],"username")]
+    element = [username[1]]
 
     if username[1] == "" or password[1] == "":
         print("Maaf, username dan atau password tidak boleh kosong")
         return (0,0,2)
     else:
         match = strain(data_user[1],element,False,True,col)
-        if match == []:
+
+        wrong_password = False
+        
+        if cipher(match[get_index(data_user[0],"password")],"ceresfauna","decrypt") != password[1]:
+            wrong_password = True
+
+        if match == [] or wrong_password:
             print(error)
             return (0,0,2)
         else:

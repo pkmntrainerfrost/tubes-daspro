@@ -1,7 +1,7 @@
 # import functions module
-from .csv import *
-from binomo_old import *
+from functions_strings import *
 from functions_lists import *
+from functions_validation import *
 
 def tambah_game(data_game): # files = game.csv
 # Tambah Game Function
@@ -19,40 +19,33 @@ def tambah_game(data_game): # files = game.csv
 
 #ALGORITMA
     # Data dari CSV
-    data = data_game[1]
     # VALIDASI INPUT
-    not_valid = True
-    while(not_valid):
-        nama_game = input("Masukkan nama game: ")
-        kategori = input("Masukkan kategori: ")
-        tahun_rilis = input("Masukkan tahun rilis: ")
-        harga = input("Masukkan harga: ")
-        stok_awal = input("Masukkan stok awal: ")
+    valid = False
+    while not valid:
+        nama_game = str(input("Masukkan nama game: "))
+        kategori = str(input("Masukkan kategori: "))
+        tahun_rilis = remove_delimiter(str(input("Masukkan tahun rilis: ")))
+        harga = remove_delimiter(str(input("Masukkan harga: ")))
+        stok_awal = remove_delimiter(str(input("Masukkan stok awal: ")))
 
         # MEMVALIDASI INPUT
-        if (not(space_checker(nama_game)) or not(space_checker(kategori)) or not(space_checker(tahun_rilis)) or not(space_checker(harga)) or not(space_checker(stok_awal))):
+        if is_empty_string(nama_game) or is_empty_string(kategori) or is_empty_string(tahun_rilis) or is_empty_string(harga) or is_empty_string(tahun_rilis):
             print("Mohon masukkan semua informasi mengenai game agar dapat disimpan BNMO.")
         else:
             # MEMVALIDASI TAHUN RILIS DAN HARGA
-            if (is_integer(tahun_rilis) and (is_integer(harga)) and is_integer(stok_awal)):
-                not_valid = False
+            if is_integer(tahun_rilis) and is_integer(harga) and is_integer(stok_awal):
+                valid = True
             else:
-                print("Mohon mengecek input untuk tahun rilis, harga, atau stok awal.")
+                print("Mohon mengecek input untuk tahun rilis atau harga.")
 
     # PROGRAM SETELAH INPUT BENAR
-    if (not_valid == False):
-        if length(data) > 0:
-            # pemberian id pada game
-            id = length(data) + 1
-            # id akan diincrement berdasarkan urutan game yang ada
-            # MEMORY DATA UNTUK DISAVE
-            memory_data = data + [['GAME'+str(id), nama_game, kategori, tahun_rilis, harga, stok_awal]]
-            
-        else:
-            # jika belum ada game , game yang ditambah pertama kali akan diberi id = 1
-            # MEMORY DATA UNTUK DISAVE
-            memory_data = [['GAME'+str(1), nama_game, kategori, tahun_rilis, harga, stok_awal]]
-            
-        print("Selamat! Berhasil menambahkan game", nama_game)
-        # MENGEMBALIKAN MEMORY DATA
-        return memory_data
+    if data_game[1] != []:
+        id = last(data_game[1])[get_index(data_game[0],"id")]
+        id = str(int(segment(id,4)) + 1)
+        id = "GAME" + "0"*(3-length(id)) + id
+    else:
+        id = "GAME001"
+
+    print("Selamat! Berhasil menambahkan game", nama_game)
+
+    return (data_game[0],konsdot(data_game[1],[id,nama_game,kategori,tahun_rilis,harga,stok_awal]))

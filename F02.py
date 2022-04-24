@@ -1,8 +1,8 @@
 # import functions module
-from .csv import space_checker, parse
 from functions_strings import *
 # from components.parser import parse (error indexing)
 from functions_lists import *
+from B01 import *
 
 def register(data_user):
 # Register function
@@ -41,7 +41,7 @@ def register(data_user):
 
         # MEMVALIDASI PEMAKAIAN USERNAME
         for user in data_user[1]:
-            if user[index(data_user[0],"username")] == username:
+            if user[get_index(data_user[0],"username")] == username:
                 existing_account = True
                 break
                 
@@ -51,15 +51,14 @@ def register(data_user):
             return data_user
         else:
             print(f'Username {username} telah berhasil register ke dalam "Binomo".')
-            if length(data) > 0:
+            if length(data_user[1]) > 0:
                 # pemberian id pada user
-                id = int(data[length(data)-1][0]) + 1
+                id = int(last(data_user[1])[0]) + 1
                 # id baru akan diberikan saldo 0 dan role 'user'
-                memory_data = data + [[str(id) , name , username, password, 'user' , str(0)]]
-                return memory_data
+                return (data_user[0],data_user[1] + [[str(id) , username , name, cipher(password,"ceresfauna","encrypt"), 'user' , str(0)]])
             else:
-                data = [[str(1) , name , username, password, 'user', str(0)]]
-                return data
+                data = [[str(1) , name , username, cipher(password,"ceresfauna","encrypt"), 'user', str(0)]]
+                return (data_user[0],data)
     else: 
         print("Username hanya dapat mengandung alfabet A-Za-z, underscore “_”, strip “-”, dan angka 0-9.")
-        return 
+        return data_user

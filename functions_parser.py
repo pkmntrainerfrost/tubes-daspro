@@ -39,14 +39,18 @@ def write(file,data,create=False):
     rows = length(data[1])
     cols = length(data[0])
 
-    for header in range(rows):
-        contents += data[0][header] + ";"
+    for header in range(cols):
+        contents += data[0][header]
+        if header != cols - 1:
+            contents += ";"
     if rows != 0:
         contents += "\n"
 
     for row in range(rows):
         for col in range(cols):
-            contents += data[1][row][col] + ";"
+            contents += data[1][row][col]
+            if col != cols - 1:
+                contents += ";"
         if row != rows - 1:
             contents += "\n"
 

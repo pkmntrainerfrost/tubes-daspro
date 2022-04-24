@@ -1,3 +1,27 @@
+from functions_lists import *
+from functions_validation import *
+
+def is_uppercase(object):
+
+    uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+
+    if length(object) == 1:
+        return is_member(uppercase,object)
+    else:
+        for i in object:
+            if not is_member(uppercase,object):
+                return False
+        return True
+
+def is_lowercase(object):
+
+    lowercase = "abcdefghijklmnopqrstuvwxyz"
+
+    for i in object:
+        if not is_member(lowercase,i):
+            return False
+    return True
+
 def order(char):
 
     if is_uppercase(char):
@@ -5,7 +29,7 @@ def order(char):
     else:
         alphabet = "abcdefghijklmnopqrstuvwxyz"
 
-    return index(alphabet,char)
+    return get_index(alphabet,char)
     
 def uppercase(order):
 
@@ -33,7 +57,7 @@ def cipher(text,key,mode):
 
     for i in text:
 
-        if is_alphabetical(i):
+        if is_alphabet(i):
             
             t = order(i)
             k = order(key[keychr])

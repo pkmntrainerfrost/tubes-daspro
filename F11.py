@@ -16,10 +16,23 @@ def search_game_at_store(data_game):
     for i in params:
         if i[1] != "":
             element += [i[1]]
-            col += [index(data_game[0],i[0])]
+            col += [get_index(data_game[0],i[0])]
     
-    match = strain(data_game[1],element,False,True,col)
+    if element != []:
+        match = strain(data_game[1],element,False,True,col)
+        
+    else:
+        match = data_game[1]
 
-    print_table(match)
+    if match == []:
+        print("Tidak ada game yang memenuhi kriteria.")
+    else:
+        if type(match[1]) != list:
+            match = [match]
+        print()
+        print("Daftar game pada toko yang memenuhi kriteria:")   
+        print_table(match)
+
+    
 
 

@@ -14,7 +14,7 @@ def define_commands():
     commands += [("tambah_game","Untuk menambah game yang dijual pada toko",2,1)]
     commands += [("ubah_game","Mengubah informasi game pada toko game",2,1)]
     commands += [("ubah_stok","Mengubah stok suatu game pada toko",2,1)]
-    commands += [("list_game","Untuk melihat list game yang dijual pada toko",0,1)]
+    commands += [("list_game_toko","Untuk melihat list game yang dijual pada toko",0,1)]
     commands += [("buy_game","prosedur bagi user untuk membeli game",1,1)]
     commands += [("list_game","memberikan daftar game yang dimiliki pengguna",1,1)]
     commands += [("search_my_game","mencari game yang dimiliki dari ID dan tahun rilis",1,1)]
@@ -53,7 +53,8 @@ def user_input(commands,role,status):
 
 def print_table(table):
 
-    col_length = [0 for i in length(table[0])]
+    if table != []:
+        col_length = [0 for i in range(length(table[0]))]
 
     for row in table:
         for col in range(length(col_length)):

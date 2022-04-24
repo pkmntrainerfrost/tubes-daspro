@@ -20,10 +20,15 @@ def segment(list,first,last=-1):
     
     # Inisialisasi 
     new_list = []
+    if type(list) == str:
+        new_list = ""
 
     # Tambahkan setiap elemen dari index first ke index last (inklusif) ke new_list
     for i in range(first,last):
-        new_list += [list[i]]
+        if type(list) == str:
+            new_list += list[i]
+        else:
+            new_list += [list[i]]
     
     # Output
     return new_list
@@ -148,7 +153,9 @@ def strain(list,element,inverse=False,matrix=False,col=0):
                     match = False
                     break
             if match:
-                new_matrix += row
+                new_matrix += [row]
+        if length(new_matrix) == 1:
+            new_matrix = new_matrix[0]
         return new_matrix
     else:
         new_list = []
@@ -321,7 +328,7 @@ def length(list):
     # OUTPUT
     return length
 
-def sort(list,scheme="+"):
+def sort(list,scheme="+",matrix=False,col=0):
 
     # Mengurutkan elemen-elemen pada list of int/float menggunakan quicksort - pengganti sort()
 
@@ -336,6 +343,7 @@ def sort(list,scheme="+"):
     # ALGORITMA FUNGSI
 
     # Cek panjang list, kembalikan list bila panjangnya <= 1 - basis
+    
     if length(list) <= 1:
 
         return list
@@ -345,26 +353,40 @@ def sort(list,scheme="+"):
         
         # Inisialisasi pivot, l, dan r
         pivot = last(list)
+        if matrix:
+            pivot_elmt = int(pivot[col])
         l = []
         r = []
 
         # Masukkan setiap elemen selain pivot ke dalam l atau r berdasarkan skema
         for i in init(list):
-            if scheme == "-":
-                if i > pivot:
-                    l += [i]
+            if matrix:
+                if scheme == "-":
+                    if int(i[col]) > pivot_elmt:
+                        l += [i]
+                    else:
+                        r += [i]
                 else:
-                    r += [i]
+                    if int(i[col]) < pivot_elmt:
+                        l += [i]
+                    else:
+                        r += [i]
             else:
-                if i < pivot:
-                    l += [i]
+                if scheme == "-":
+                    if int(i) > pivot:
+                        l += [i]
+                    else:
+                        r += [i]
                 else:
-                    r += [i]
+                    if int(i) < pivot:
+                        l += [i]
+                    else:
+                        r += [i]
 
         # Output - rekurens
-        return sort(l,scheme) + [pivot] + sort(r,scheme)
+        return sort(l,scheme,matrix,col) + [pivot] + sort(r,scheme,matrix,col)
 
-def index(list,element,occurence=1):
+def get_index(list,element,occurence=1):
 
     if occurence == "last":
         for i in range(length(list)-1,-1,-1):
