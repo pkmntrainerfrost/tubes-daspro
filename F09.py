@@ -8,7 +8,7 @@ def list_game(user_id,data_game,data_kepemilikan):
 
     if games_owned != []:
 
-        if type(games_owned[1]) != list:
+        if type(games_owned[0]) != list:
             games_owned = [games_owned]
 
         col = []
@@ -16,9 +16,11 @@ def list_game(user_id,data_game,data_kepemilikan):
         for game in games_owned:
             element = [game[0]]
             col = [get_index(data_game[0],"id")]
-            games += [strain(data_game[1],element,False,True,col)]
-        if type(games[1]) != list:
+            games += segment(strain(data_game[1],element,False,True,col),0,5)
+        if type(games[0]) != list:
             games = [games]
+        print()
+        print("Daftar game:")
         print_table(games)
     else:
         print("Maaf, anda belum membeli game. Ketik perintah beli_game untuk beli.")

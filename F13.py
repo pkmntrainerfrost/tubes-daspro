@@ -8,6 +8,13 @@ def riwayat(user_id,data_riwayat):
     if riwayat == []:
         print("Maaf, kamu tidak ada riwayat pembelian game. Ketik perintah beli_game untuk membeli.")
     else:
-        if type(riwayat[1]) != list:
+        if type(riwayat[0]) != list:
             riwayat = [riwayat]
-        print_table(riwayat)
+
+        riwayat_show = []
+        for pembelian in riwayat:
+            riwayat_show += [segment(pembelian,0,3) + [pembelian[4]]]
+
+        print()
+        print("Daftar game:")
+        print_table(riwayat_show)

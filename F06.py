@@ -31,18 +31,23 @@ def ubah_stok(data_game): # files = game.csv
                 print("Jumlah harus berupa integer!")
                 return data_game
         
-        if int(game[get_index(data_game[0],"stok")]) + perubahan_stok < 0:
-            print("Stok game", game[get_index(data_game[0],"nama")],"gagal dikurangi karena stok kurang. Stok sekarang:",game[get_index(data_game[0],"stok")], "(<", perubahan_stok + ")" )
-            return data_game
+            if int(game[get_index(data_game[0],"stok")]) + perubahan_stok < 0:
+                print("Stok game", game[get_index(data_game[0],"nama")],"gagal dikurangi karena stok kurang. Stok sekarang:",game[get_index(data_game[0],"stok")], "(<", perubahan_stok + ")" )
+                return data_game
+            else:
+                game[get_index(data_game[0],"stok")] = str(int(game[get_index(data_game[0],"stok")]) + perubahan_stok)
+                if perubahan_stok < 0:
+                    print("Stok game", game[get_index(data_game[0],"nama")],"berhasil dikurangi. Stok sekarang:", game[get_index(data_game[0],"stok")])
+                if perubahan_stok == 0:
+                    print("Stok game", game[get_index(data_game[0],"nama")],"tidak diubah. Stok sekarang:", game[get_index(data_game[0],"stok")])
+                if perubahan_stok > 0:
+                    print("Stok game", game[get_index(data_game[0],"nama")],"berhasil ditambahkan. Stok sekarang:", game[get_index(data_game[0],"stok")])
+                return (data_game[0],konkat(segment(data_game[1],0,index),[game],segment(data_game[1],index+1)))
+
         else:
-            game[get_index(data_game[0],"stok")] = str(int(game[get_index(data_game[0],"stok")]) + perubahan_stok)
-            if perubahan_stok < 0:
-                print("Stok game", game[get_index(data_game[0],"nama")],"berhasil dikurangi. Stok sekarang:", game[get_index(data_game[0],"stok")])
-            if perubahan_stok == 0:
-                print("Stok game", game[get_index(data_game[0],"nama")],"tidak diubah. Stok sekarang:", game[get_index(data_game[0],"stok")])
-            if perubahan_stok > 0:
-                print("Stok game", game[get_index(data_game[0],"nama")],"berhasil ditambahkan. Stok sekarang:", game[get_index(data_game[0],"stok")])
-            return (data_game[0],konkat(segment(data_game[1],0,index),[game],segment(data_game[1],index+1)))
+            print()
+            print("Tidak ada game dengan ID tersebut!")
+            return data_game
 
     if length(data) > 0:
         # INPUT ID

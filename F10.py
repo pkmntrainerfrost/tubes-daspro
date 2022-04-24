@@ -25,7 +25,7 @@ def search_my_game(user,data_game,data_kepemilikan):
 
     else:
 
-        if type(games_owned[1]) != list:
+        if type(games_owned[0]) != list:
             games_owned = [games_owned]
 
         games = []
@@ -36,12 +36,12 @@ def search_my_game(user,data_game,data_kepemilikan):
             if tahun_rilis[1] != "":
                 element += [tahun_rilis[1]]
                 col += [get_index(data_game[0],"tahun_rilis")]
-            games += [strain(data_game[1],element,False,True,col)]
+            games += segment(strain(data_game[1],element,False,True,col),0,5)
         
         if games == []:
             print("Tidak ada game pada inventory-mu yang memenuhi kriteria")
         else:
-            if type(games[1]) != list:
+            if type(games[0]) != list:
                 games = [games]
             print()
             print("Daftar game pada inventory yang memenuhi kriteria:")
